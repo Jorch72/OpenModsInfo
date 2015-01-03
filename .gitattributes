@@ -1,0 +1,13 @@
+*.txt  text
+*.htm   text
+*.html  text
+*.css  text
+*.js text
+*.svg   text
+*.json   text
+.htaccess text
+
+*.ttf   -text
+*.eot   -text
+*.woff   -text
+*.zip   -text
