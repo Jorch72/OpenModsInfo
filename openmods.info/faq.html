@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="OpenMods FAQ">
+        <meta name="author" content="">
+
+        <title>OpenMods - FAQ</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <link href="css/openmods.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="jumbotron">
+                <h1>FAQ</h1>
+                <sub style="color: #eeeeee">Because I'm tired!</sub>
+        </div>
+        <div class="container">
+            <div class="panel-group" id="accordion">
+
+                <div class="faqHeader">General questions</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-0">How can I get answers to questions that aren't on that list?</a>
+                        </h4>
+                    </div>
+                    <div id="general-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Ask us directly in channel <code>#OpenMods</code> on <a href="http://esper.net">EsperNet</a>. <!-- Yes, we use IRC. Yes, we know it's not '90. It's just good, time-proven solution -->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-1">I checked IRC, but nobody answered me?</a>
+                        </h4>
+                    </div>
+                    <div id="general-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>First of all, don't ask if you can ask. Ask immediately.</p>
+                            <p>Also, don't disconnect few seconds later. We are not bots, it takes some time for us to react.</p>
+                            <p>You probably will wait some time for your answer. Especially if you are from timezones that are not GMT+1. <!-- Woohoo, EUROPE! --></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-2">How do I report issues?</a>
+                        </h4>
+                    </div>
+                    <div id="general-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Our prefered method is via <a href="https://github.com/OpenMods">Github</a>.</p>
+                            <p>When reporting anything other than crashlog, please remember to <strong>ALWAYS</strong> specify version you use (modpack name or even version is not enough).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-3">What's the difference between release and snapshot?</a>
+                        </h4>
+                    </div>
+                    <div id="general-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Snapshot is version of mod created immediately after we push (commit) new code. It may contain WIP features, world breaking bugs or even not start at all.</p>
+                            <p>Release (files available on our official page) is specifically selected snapshot that does not contain WIP features and we think should be stable. It also should be one used in modpacks.</p>
+                            <p>We usually release all our main mods (OpenModsLib + OpenBlocks + OpenPeripheral) at once, to make sure we get dependencies right.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-4">Can you implement my idea/suggestion?</a>
+                        </h4>
+                    </div>
+                    <div id="general-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>If we like your idea and have time - sure.</p>
+                            <p>Unfortunately, our main problem is time - OpenMods currently have only few active developers, so we have to limit our scope <!-- Welp, who am I kidding with all that plurals. "We". Active developerS. Humpf! #BitterOldMan #PleaseDoCodeForMe --></p>
+                            <p>If you still want too see your idea, you may try to implement it yourself - we will try to help you.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="faqHeader">OpenBlocks</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-0">Grave didn't spawn/Some items are missing?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> Code that spawns graves works after all other mods had chance to add their drops. During that time, any mod can modify list of already added items or even cancel drops at all.</p>
+                            <p>Graves should always contain items that would be dropped normally - so if item isn't in grave, it would probably not drop even if graves were disabled.</p>
+                            <p>Or that should happen, if this was perfect world and perfect code... Though if something goes wrong, we log information in console that contains useful things (like grave spawn location or reason for not spawning).<br />
+                            Usually that logs look like this:</p>
+                            <pre>
+10:04:00] [Server thread/INFO] [OpenMods/]: openblocks.common.PlayerInventoryStore.onPlayerDeath(PlayerInventoryStore.java:303): Storing post-mortem inventory into d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-death-0.dat. It can be restored with command '/ob_inventory restore boq boq-2015-04-05_10.04.00-death-0'
+[10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler.onPlayerDrops(PlayerDeathHandler.java:349): Scheduling grave placement for player 'EntityPlayerMP['boq'/0, l='OB-clean', x=1001,50, y=51,00, z=999,50]':'com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false]' with 1 items
+[10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.trySpawnGrave(PlayerDeathHandler.java:230): Grave for com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] will be spawned at (1001,51,999)
+[10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.backupGrave(PlayerDeathHandler.java:275): Grave backup for player com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] saved to d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-grave-0.dat
+                            </pre>
+
+                            <p><strong>Note:</strong> grave won't spawn in following conditions:</p>
+                            <ul>
+                                <li>If item list was empty or emptied by other mod before our code handled it</li>
+                                <li>If player drops event was cancelled by other mod</li>
+                                <li>If grave spawn event was cancelled by other mod</li>
+                                <li>If there is no valid location to place it (for example, when player died in spawn-protected region)</li>
+                            </ul>
+                           <p>In last two cases, items will drop on ground</p>
+                           <p>If you want to see, what other mods can interfere with grave spawning, please either use EventLog (available <a href="misc.html">here</a>) or <code>debug:gravesDebug</code> command. You can change config without restart with following command: </p>
+                           <pre>/om_config_s set openblocks debug graves debug true</pre>
+                           <p>If command is used, your logs should contain information about drops handlers. If EventLog is used, you have to print it with <code>/list_events_s</code> after at least one death.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-1">How do I restore my inventory with command?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>As you may have noticed from previous question, OpenBlocks has command that allows to restore inventory from before death or examine grave contents, even if grave was already destroyed or not spawned at all.</p>
+                            <p>It can be used in two ways:</p>
+                            <ul>
+                                <li><code>/ob_inventory restore</code> - replaces contents of player's inventory with stored items </li>
+                                <li><code>/ob_inventory spawn</code> - drops whole inventory or just single item in world</li>
+                            </ul>
+                            <p>If you are confused by syntax, almost all parameters have tab-completion.</p>
+                            <p>To use it, you need to enable commands in single-player or be op in multi-player.</p>
+                            <p>Before you can restore, you need to know which file contains items you want to restore. Path usually looks like this:</p>
+                            <pre>saves/&lt;world&gt;/data/inventory-boq-2015-04-04_21.48.30-death-0.dat</pre>
+                            <p>You can just start typing player name and then press tab key, it should already fill rest with suggestion.</p>
+                            <p>Last word specifies what event triggered file creation. Currently it may be one of following strings:</p>
+                            <ul>
+                                <li><strong>death</strong> - contents of player's inventory from moment before player death</li>
+                                <li><strong>grave</strong> - contents of grave</li>
+                                <li><strong>command</strong> - snapshot of inventory, created with <code>/ob_inventory store</code> command</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-2">How do I disable graves?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>You can disable graves via configuration file, like any other block and item in OpenBlocks. Just make following change to configuration:</p>
+                            <pre>
+blocks {
+    B:grave=false
+}
+                            </pre>
+                            <p>Note that this will also remove all existing graves in save.</p>
+
+                            <p>You can also disable graves per world, by using gamerule command, i.e. <code>/gamerule openblocks:spawn_graves false</code>. This method won't remove existing graves.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-3">I disabled graves, but they still spawn?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Are you sure those are our graves? This seems like silly question, but this is most common solution to this problem.</p>
+                            <p>If there are no logs like ones described previously, it's not our block.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-4">How do I break graves in adventure mode? Can I empty grave without breaking it?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>If you can't (or don't want to) break grave, you can just right-click it with shovel.<!-- 2spooky4me --> Unfortunately, we can't control list of block that can be destroyed in adventure mode with specific tool.</p>
+                            <p>Also, please remember, that digging graves may get you into trouble. <!-- And some nice classical music! --></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-5">What happened to radio?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>We removed it.</p>
+                            <p>Between Minecraft 1.6 and 1.7 sound engine changed. When trying to port radio, code started to look more and more like just limited and buggy external player with on/off switch in Minecraft. So it become kind of pointless.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqHeader">OpenPeripheralCore</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-0">Where can I find documentation for peripherals?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>First, an explanation: we don't include any documentation on our page, since it may be different for any Minecraft instance. Adding or removing mods may change list of methods available to you.
+                            Also, since method lists are generated in runtime, it's impossible to list all methods at once.
+                            So keeping full, centralized list takes too much effort and will be probably obsolete the moment we publish it. That's why we rely on auto-generated documentation.</p>
+
+                            <p>There are few ways to get documentation:</p>
+                            <ul>
+                                <li>Offline, with <code>/op_dump</code>. This command will generate HTML file with all information available at the moment of execution (this list may expand the more you play)</li>
+                                <li>In-game, with <code>openp/docs</code> command</li>
+                                <li>(ComputerCraft only) In-game, with <code>help</code> command. OpenPeripheral adds entries to built-in help list. For example, if peripheral is attached on left side of computer, methods can be checked with <code>help left</code></li>
+                                <li>(OpenComputers only) In-game, by printing peripheral proxy with <code>=</code></li>
+                                <li>In-game, with <code>.listSources()</code>, <code>.listMethods(source)</code> and <code>.doc(method_name)</code>. Every object or peripheral generated by OpenPeripheral has those methods. They can be used to quickly check arguments and description of methods</li>
+                            </ul>
+                            <p>Example of using last method to get information:<p>
+                            <img src="downloads/cc-doc.png" alt="ingame-doc" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-1">Why did you split OpenPeripheral into three mods?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Because we <!-- I --> realized that original OpenPeripherals actually had three separate areas. Also, split gave us some flexibility in updating mods.</p>
+                            <ul>
+                                <li>OpenPeripheralCore is library/base that can be used to provide easy integration to other mods. So it wouldn't be good idea to provide library that contains game content, since other mods may use it, but users aren't possibly interested in other content</li>
+                                <li>OpenPeripheralIntegration - it's probably hardest mod to maintain, since it depends on multiple other mods and API. After split, it is much easier to release just that part, without worrying about ongoing development in two other mods</li>
+                                <li>OpenPeripheralAddons - it's just gameplay mod. Some may find it useless, but still keep other two mods</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-2">Why can't I print result of some functions?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Some functions may return table of functions. Lua by default can't print functions, so tables containing them are unprintable.</p>
+                            <p>If you get one from OpenPeripheral method, you can always call <code>.listMethods()</code> to find out what it can do. Or you may just use plain Lua to list keys, like this: <code>for k,v in pairs(t) do print(k) end </code></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-3">Can OpenPeripheral display or modify raw NBT data?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Short answer: no.</p>
+                            <p>
+                                Slightly longer answer: still no. Some mods keep sensitive data in there.
+                                But for most common structures we usually provide translators, that return them in safe way.
+                                And we make available value called <code>nbt_hash</code>. It can be used to match and compare items.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-4">Why OpenPeripheral methods are not visible for some blocks?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Our philosophy is to generate peripherals only for blocks that don't do it itself. So if block already has ANY methods, we don't touch it.</p>
+                            <p>Though it's probably only ComputerCraft problem, since OpenComputers automatically merge methods from different sources.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-5">How can I prevent OpenPeripheral from generating peripheral for my blocks?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                         <ul>
+                            <li><code>openperipheral.api.peripheral.Ignore</code> annotation on TileEntity class</li>
+                            <li>Any field called <code>OPENPERIPHERAL_IGNORE</code>in TileEntity class</li>
+                            <li>IMC message with id <code>ignoreTileEntity</code> and full class name as value</li>
+                            <li>Explicit registration via <code>openperipheral.api.peripheral.IPeripheralBlacklist#addToBlacklist(Class)</code></li>
+                         </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="faqHeader">OpenPeripheralAddons</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-addons-0">I added some element to terminal glasses but nothing?</a>
+                        </h4>
+                    </div>
+                    <div id="op-addons-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>You need to call <code>.sync()</code> to make any changes visible to users. Note, that this method is synchronized, i.e. will wait for end of tick before execution. If you call it too often, it will slow your program.</p>
+                            <p>Usually it good to start coding with event loop, like presented in this <a href="https://gist.github.com/boq/67300900797b113a124d">demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-addons-1">Why I shouldn't call <code>.clear()</code> every tick?<!-- They usually ask that after I tell them not to do that --></a>
+                        </h4>
+                    </div>
+                    <div id="op-addons-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Calling <code>.clear()</code> and recreating screen every time after update generates unnecessary updates sent to users. It's better to just keep reference to object and update single property, like this:
+                            <pre>
+box = p.addBox(10,10,10,10,0xFF0000)
+p.sync()
+b.setColor(0x00FF00)
+p.sync()
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-addons-2">What are terminal glasses events?</a>
+                        </h4>
+                    </div>
+                    <div id="op-addons-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            When attached to computer terminal bridge will send events received from terminal glasses and wireless keyboard. List is available <a href="https://gist.github.com/boq/9a098b89ee102cbf1b2b">here</a>.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="faqHeader">OpenPeripheralIntegration</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-0">What mods are supported by OpenPeripheralIntegration</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul>
+                                <li>Vanilla</li>
+                                <li>CoFH API (including RF API)</li>
+                                <li>BuildCraft</li>
+                                <li>IndustrialCraft<sup>2</sup></li>
+                                <li>Railcraft</li>
+                                <li>Thaumcraft</li>
+                                <li>MineFactoryReloaded</li>
+                                <li>EnderStorage</li>
+                                <li>Forestry</li>
+                                <li>Mystcraft</li>
+                                <li>Thaumcraft</li>
+                                <li>ThermalExpansions</li>
+                                <li>Applied Energistics 2</li>
+                            </ul>
+                            Integration with some mods may sometimes include only few blocks.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-1">When will X be supported?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>If mod has well defined and mature API: when we have time to implement that. Without API: probably never.</p>
+                            <p>Supporting and maintaining integration for multiple mods is very time consuming (especially when mods have different release cycles).
+                            We try to do what we can, but just don't have enough time to expand it every time interesting mod shows up.</p>
+                            <p>Though we won't complain if somebody makes pull request with functionality. After all, it's open-source mod.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-2">Why did my program suddenly stopped working?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>There are usually two possible causes:</p>
+                            <p>Mod has changed API and integration module failed to load properly. This should be reported in logs, like this</p>
+                            <pre>[23:12:15] [Client thread/WARN] [OpenMods]: Can't load integration module 'Mystcraft (mod) CC integration module'</pre>
+                            <p>Please report it to us and wait for fixes.</p>
+                            <p>Between versions, we may have also changed method name or remove it at all. It happens, when we find out better way to do some tasks. Though we try to minimize breaking changes. Please review your program and update.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-3">Vanilla furnace behaves weird?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Well, it's vanilla. Furnace is best example of weird code<!-- this is what we professionals call 'notch code' -->. Unfortunately, we can't do anything about it.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-4">How do I disable integration for single mod?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Just go to configs and disable something that looks like it might do the job. OpenPeripheralIntegration also has in-game Config GUI (go to mod list from main menu, select mod and click 'Config' under).
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-5">How do I use Applied Energistics 2 integration?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Methods like <code>requestCrafting</code>, <code>exportItem</code> and <code>getItemDetail</code> (first two available only on ME interfaces) need table with 1-3 fields:</p>
+                            <pre>{ id, [ dmg, nbt_hash ] }</pre>
+                            <p> <code>id</code> is name of item, like <code>minecraft:dirt</code>. <code>dmg</code> is damage/metadata (if not present, catch-all value -1 will be used) and <code>nbt_hash</code> (since we don't operate on raw NBT).</p>
+                            <p> This structure is compatible with one returned from methods like <code>getStackInSlot</code> from normal inventory, so for more complicated items you can just keep one template stack in chest and use it to request more (or just store or hardcode hash in program).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-6">How do I describe item stack in Lua?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <pre>{ id, [ dmg, qty ] }</pre>
+                             <p> <code>id</code> is name of item, like <code>minecraft:dirt</code>. <code>dmg</code> is damage/metadata and <code>qty</code> is number of items. If you want to read extra attributes, you can pass this simple structure to function <code>expandStack</code> available on any inventory block.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-7">Some functions (like sensor methods) return functions instead of data?</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-7" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>This structure (called proxy) contains same data, but hidden behind methods. It was done to limit number of information printed on screen and to speed up data retrieval (no need to collect all information, when user needs just position).</p>
+                            <p>There are following methods on this object</p>
+                            <ul>
+                                <li><code>basic</code> - returns basic information (like position or item name, etc.)</li>
+                                <li><code>keys</code> - returns list of available attributes </li>
+                                <li><code>single</code> - get single attribute</li>
+                                <li><code>select</code> - return multiple attributes as table</li>
+                                <li><code>all</code> - return all attributes (same as old functionality)</li>
+                            </ul>
+                            <p>Of course, since it's normal OpenPeripheral object, you can just use <a href="#op-core-0">normal techniques</a> (i.e. <code>listMethods()</code>) to get documentation</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Me no speek english. Me sorry for errors. Xhejn. -->
+            </div>
+        </div>
+        <br /><br /><br />
+
+        <!-- Scripts placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+                        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                        ga('create', 'UA-50862853-1', 'openmods.info');
+                        ga('send', 'pageview');
+        </script>
+</body></html>
