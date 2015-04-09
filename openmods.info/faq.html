@@ -24,6 +24,7 @@
         <div class="jumbotron">
                 <h1>FAQ</h1>
                 <sub style="color: #eeeeee">Because I'm tired!</sub>
+                <!-- Hello there, welcome to FAQ. Have fun. Also, who  reads HTML code of visited pages? NEEEEEEEEERD! -->
         </div>
         <div class="container">
             <div class="panel-group" id="accordion">
@@ -94,6 +95,36 @@
                             <p>If we like your idea and have time - sure.</p>
                             <p>Unfortunately, our main problem is time - OpenMods currently have only few active developers, so we have to limit our scope <!-- Welp, who am I kidding with all that plurals. "We". Active developerS. Humpf! #BitterOldMan #PleaseDoCodeForMe --></p>
                             <p>If you still want too see your idea, you may try to implement it yourself - we will try to help you.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="faqHeader">OpenModsLib</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#om-0">What is name of OpenModsLib fake player?</a>
+                        </h4>
+                    </div>
+                    <div id="om-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>OpenModsLib uses more than one fake player. They are created on-demand. Maximum number can be set by changing configuration parameter <code>fakePlayerThreshold</code></p>
+                           <p>All OpenMods use same pool of fake players. Names and UUIDs should be same between game sessions.</p>
+                           <p>In most cases game uses at most 1-2 players at once, but there are some edge cases (updating multiple blocks with single redstone signal) when more is needed.</p>
+
+                           <p>List of names and UUIDs of first 8 fake players:</p>
+                           <pre>
+OpenModsFakePlayer-001 58d1cfa9-97d6-32a1-8fd8-3508a7cc6aeb
+OpenModsFakePlayer-002 2e52f7c0-52d3-3037-a73b-ba968713d5bb
+OpenModsFakePlayer-003 7c53ac9a-bf36-3c2f-8d2f-7034c0f83d3e
+OpenModsFakePlayer-004 e662cdf1-2c81-397c-b5ba-4ae9672f7af9
+OpenModsFakePlayer-005 a0547477-3d9b-364a-964f-bcd18368f9a1
+OpenModsFakePlayer-006 4f00f8ab-90c6-38d1-a6be-48d9311fc1bf
+OpenModsFakePlayer-007 c5f89732-0644-340d-9002-25c0b93c53b9
+OpenModsFakePlayer-008 cc8c0eab-fe73-33db-acf2-07c107aa3744
+                           </pre>
+                           <p>Note: recent versions of OpenModsLib should log name and UUID of fake players at moment of creation.</p>
                         </div>
                     </div>
                 </div>
@@ -218,6 +249,24 @@ blocks {
                         <div class="panel-body">
                             <p>We removed it.</p>
                             <p>Between Minecraft 1.6 and 1.7 sound engine changed. When trying to port radio, code started to look more and more like just limited and buggy external player with on/off switch in Minecraft. So it become kind of pointless.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-6">Why does elevator not work?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>There are usually few possible causes:</p>
+                            <ul>
+                                <li>Not enough XP. Since few versions elevators drain experience in survival mode. This option can be disabled in configuration.</li>
+                                <li>Too many blocks between elevators. This limitation is also configurable.</li>
+                                <li>Badly implemented air-like blocks. Most mods got varsious light and tracking blocks right, but there is still room for misbehaving implementation.<!-- We are paranoid --></li>
+                                <li>Different elevator colors. Elevators will only teleport to other elevators with same color.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
