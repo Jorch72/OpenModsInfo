@@ -270,6 +270,21 @@ blocks {
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-7">Does <code>/ob_inventory restore</code> work on non-vanilla inventories?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-7" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>This depends on other mods</p>
+                            <p>Currently OpenBlocks contains code that allows storing such inventories and events to signal loading and storing inventory (<code>openblocks.api.InventoryEvent.*</code>).
+                            Though it's recent addition and as far as we know, no mod uses that.</p>
+                            <p>We may add integration directly in OpenBlocks, if mod has proper API</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="faqHeader">OpenPeripheralCore</div>
 
@@ -372,6 +387,20 @@ blocks {
                             <li>IMC message with id <code>ignoreTileEntity</code> and full class name as value</li>
                             <li>Explicit registration via <code>openperipheral.api.peripheral.IPeripheralBlacklist#addToBlacklist(Class)</code></li>
                          </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-6">Why calling some peripheral or object methods slows my program?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        <p>Most of methods on peripheral are "synchronized" - that means they can only execute at the end of game tick (about 1/20s). This is unfortunate side-effect of Minecraft single threaded architecture</p>
+                        <p>We examined few methods and determined they can be asynchonous - i.e. executed at any time. If such method is called, execution of program is not paused and it can run at full speed</p>
+                        <p>Sometimes we may mistakenly mark method as synchronous. If you notice that your programs work (or have recently started) working very slow, please contact us so we can investigate.</p>
                         </div>
                     </div>
                 </div>
