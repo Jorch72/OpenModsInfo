@@ -87,10 +87,23 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-4">Can you implement my idea/suggestion?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-4">How can I find out which snapshots/version do I have?</a>
                         </h4>
                     </div>
                     <div id="general-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>All our mods contains that information in <code>META-INF/MANIFEST.MF</code> inside .jar file (which actually is just renamed .zip file).</p>
+                            <p><code>OpenPeripheral-AIO-*.jar</code> files are exception, since they are generated manually. They contain file called <code>versions.txt</code> which is a list of files used for generation of AIO file.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-5">Can you implement my idea/suggestion?</a>
+                        </h4>
+                    </div>
+                    <div id="general-5" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>If we like your idea and have time - sure.</p>
                             <p>Unfortunately, our main problem is time - OpenMods currently have only few active developers, so we have to limit our scope <!-- Welp, who am I kidding with all that plurals. "We". Active developerS. Humpf! #BitterOldMan #PleaseDoCodeForMe --></p>
@@ -285,16 +298,28 @@ blocks {
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-8">Why doesn't building guide show any markers?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-8" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Since version 1.3 this block needs redstone power to work. This behavior can be configured with <code>guide.redstoneSensitivity</code> configuration option.</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="faqHeader">OpenPeripheralCore</div>
+                <div class="faqHeader">OpenPeripheral - general</div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-0">Where can I find documentation for peripherals?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-0">Where can I find documentation for peripherals?</a>
                         </h4>
                     </div>
-                    <div id="op-core-0" class="panel-collapse collapse">
+                    <div id="op-0" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>First, an explanation: we don't include any documentation on our page, since it may be different for any Minecraft instance. Adding or removing mods may change list of methods available to you.
                             Also, since method lists are generated in runtime, it's impossible to list all methods at once.
@@ -316,10 +341,10 @@ blocks {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-1">Why did you split OpenPeripheral into three mods?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-1">Why did you split OpenPeripheral into three mods?</a>
                         </h4>
                     </div>
-                    <div id="op-core-1" class="panel-collapse collapse">
+                    <div id="op-1" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>Because we <!-- I --> realized that original OpenPeripherals actually had three separate areas. Also, split gave us some flexibility in updating mods.</p>
                             <ul>
@@ -333,10 +358,29 @@ blocks {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-2">Why can't I print result of some functions?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-3">What is OpenPeripheral-AIO file?</a>
                         </h4>
                     </div>
-                    <div id="op-core-2" class="panel-collapse collapse">
+                    <div id="op-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>AIO == All-In-One. Even though we split OpenPeripheral in three separate mods, we know it may be frustrating to keep track of three separate files.</p>
+                            <p>So for convenience we release all three mods joined into one .jar file. It has same functionality as three separate ones.</p>
+                            <p>Though if you are modpack creator, you should probably use separate files - your users won't notice, but it should be easier to update just single file.</p>
+                            <p>All AIO files contain <code>versions.jar</code> file inside that lists files used to create it.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqHeader">OpenPeripheralCore</div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-0">Why can't I print result of some functions?</a>
+                        </h4>
+                    </div>
+                    <div id="op-core-0" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>Some functions may return table of functions. Lua by default can't print functions, so tables containing them are unprintable.</p>
                             <p>If you get one from OpenPeripheral method, you can always call <code>.listMethods()</code> to find out what it can do. Or you may just use plain Lua to list keys, like this: <code>for k,v in pairs(t) do print(k) end </code></p>
@@ -346,27 +390,10 @@ blocks {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-3">Can OpenPeripheral display or modify raw NBT data?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-1">Why OpenPeripheral methods are not visible for some blocks?</a>
                         </h4>
                     </div>
-                    <div id="op-core-3" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>Short answer: no.</p>
-                            <p>
-                                Slightly longer answer: still no. Some mods keep sensitive data in there.
-                                But for most common structures we usually provide translators, that return them in safe way.
-                                And we make available value called <code>nbt_hash</code>. It can be used to match and compare items.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-4">Why OpenPeripheral methods are not visible for some blocks?</a>
-                        </h4>
-                    </div>
-                    <div id="op-core-4" class="panel-collapse collapse">
+                    <div id="op-core-1" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>Our philosophy is to generate peripherals only for blocks that don't do it itself. So if block already has ANY methods, we don't touch it.</p>
                             <p>Though it's probably only ComputerCraft problem, since OpenComputers automatically merge methods from different sources.</p>
@@ -376,10 +403,10 @@ blocks {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-5">How can I prevent OpenPeripheral from generating peripheral for my blocks?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-2">How can I prevent OpenPeripheral from generating peripheral for my blocks?</a>
                         </h4>
                     </div>
-                    <div id="op-core-5" class="panel-collapse collapse">
+                    <div id="op-core-2" class="panel-collapse collapse">
                         <div class="panel-body">
                          <ul>
                             <li><code>openperipheral.api.peripheral.Ignore</code> annotation on TileEntity class</li>
@@ -393,10 +420,10 @@ blocks {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-6">Why calling some peripheral or object methods slows my program?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-core-3">Why calling some peripheral or object methods slows my program?</a>
                         </h4>
                     </div>
-                    <div id="op-core-6" class="panel-collapse collapse">
+                    <div id="op-core-3" class="panel-collapse collapse">
                         <div class="panel-body">
                         <p>Most of methods on peripheral are "synchronized" - that means they can only execute at the end of game tick (about 1/20s). This is unfortunate side-effect of Minecraft single threaded architecture</p>
                         <p>We examined few methods and determined they can be asynchonous - i.e. executed at any time. If such method is called, execution of program is not paused and it can run at full speed</p>
@@ -458,10 +485,28 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-0">What mods are supported by OpenPeripheralIntegration</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-0">Can OpenPeripheral display or modify raw NBT data?</a>
                         </h4>
                     </div>
                     <div id="op-integration-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Short answer: no.</p>
+                            <p>
+                                Slightly longer answer: still no. Some mods keep sensitive data in there.
+                                But for most common structures we usually provide translators, that return them in safe way.
+                                And we make available value called <code>nbt_hash</code>. It can be used to match and compare items.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-1">What mods are supported by OpenPeripheralIntegration</a>
+                        </h4>
+                    </div>
+                    <div id="op-integration-1" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
                                 <li>Vanilla</li>
@@ -485,10 +530,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-1">When will X be supported?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-2">When will X be supported?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-1" class="panel-collapse collapse">
+                    <div id="op-integration-2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>If mod has well defined and mature API: when we have time to implement that. Without API: probably never.</p>
                             <p>Supporting and maintaining integration for multiple mods is very time consuming (especially when mods have different release cycles).
@@ -500,10 +545,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-2">Why did my program suddenly stopped working?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-3">Why did my program suddenly stopped working?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-2" class="panel-collapse collapse">
+                    <div id="op-integration-3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>There are usually two possible causes:</p>
                             <p>Mod has changed API and integration module failed to load properly. This should be reported in logs, like this</p>
@@ -516,10 +561,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-3">Vanilla furnace behaves weird?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-4">Vanilla furnace behaves weird?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-3" class="panel-collapse collapse">
+                    <div id="op-integration-4" class="panel-collapse collapse">
                         <div class="panel-body">
                             Well, it's vanilla. Furnace is best example of weird code<!-- this is what we professionals call 'notch code' -->. Unfortunately, we can't do anything about it.
                         </div>
@@ -528,10 +573,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-4">How do I disable integration for single mod?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-5">How do I disable integration for single mod?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-4" class="panel-collapse collapse">
+                    <div id="op-integration-5" class="panel-collapse collapse">
                         <div class="panel-body">
                             Just go to configs and disable something that looks like it might do the job. OpenPeripheralIntegration also has in-game Config GUI (go to mod list from main menu, select mod and click 'Config' under).
                         </div>
@@ -540,10 +585,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-5">How do I use Applied Energistics 2 integration?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-6">How do I use Applied Energistics 2 integration?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-5" class="panel-collapse collapse">
+                    <div id="op-integration-6" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>Methods like <code>requestCrafting</code>, <code>exportItem</code> and <code>getItemDetail</code> (first two available only on ME interfaces) need table with 1-3 fields:</p>
                             <pre>{ id, [ dmg, nbt_hash ] }</pre>
@@ -555,10 +600,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-6">How do I describe item stack in Lua?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-7">How do I describe item stack in Lua?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-6" class="panel-collapse collapse">
+                    <div id="op-integration-7" class="panel-collapse collapse">
                         <div class="panel-body">
                             <pre>{ id, [ dmg, qty ] }</pre>
                              <p> <code>id</code> is name of item, like <code>minecraft:dirt</code>. <code>dmg</code> is damage/metadata and <code>qty</code> is number of items. If you want to read extra attributes, you can pass this simple structure to function <code>expandStack</code> available on any inventory block.</p>
@@ -568,10 +613,10 @@ p.sync()
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-7">Some functions (like sensor methods) return functions instead of data?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#op-integration-8">Some functions (like sensor methods) return functions instead of data?</a>
                         </h4>
                     </div>
-                    <div id="op-integration-7" class="panel-collapse collapse">
+                    <div id="op-integration-8" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>This structure (called proxy) contains same data, but hidden behind methods. It was done to limit number of information printed on screen and to speed up data retrieval (no need to collect all information, when user needs just position).</p>
                             <p>There are following methods on this object</p>
