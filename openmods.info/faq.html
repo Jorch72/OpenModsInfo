@@ -111,6 +111,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-6">Where can I get API for your mods?</a>
+                        </h4>
+                    </div>
+                    <div id="general-6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>We keep APIs in our Maven repo. To add it to your project, simply add following lines to <code>build.gradle</code>:
+                            <pre>
+repositories {
+    maven {
+        name "OpenMods"
+        url "http://repo.openmods.info/artifactory/openmods"
+    }
+} 
+
+compile "openperipheral:OpenPeripheralCore-API:3.2" // for OpenPeripheral
+compile (group: 'openblocks', name: 'OpenBlocks-API', version: '1.0') // for OpenBlocks (alternative syntax)
+                            </pre>
+                        </div>
+                    </div>
+                </div>
 
                  <div class="faqHeader">OpenModsLib</div>
 
