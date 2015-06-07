@@ -65,7 +65,7 @@
                     </div>
                     <div id="general-2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <p>Our prefered method is via <a href="https://github.com/OpenMods">Github</a>.</p>
+                            <p>Our preferred method is via <a href="https://github.com/OpenMods">Github</a>.</p>
                             <p>When reporting anything other than crashlog, please remember to <strong>ALWAYS</strong> specify version you use (modpack name or even version is not enough).</p>
                         </div>
                     </div>
@@ -126,11 +126,25 @@ repositories {
         name "OpenMods"
         url "http://repo.openmods.info/artifactory/openmods"
     }
-} 
+}
 
 compile "openperipheral:OpenPeripheralCore-API:3.2" // for OpenPeripheral
 compile (group: 'openblocks', name: 'OpenBlocks-API', version: '1.0') // for OpenBlocks (alternative syntax)
                             </pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#general-7">How to disable item/block?</a>
+                        </h4>
+                    </div>
+                    <div id="general-7" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>OpenModsLib based mods (like OpenBlocks and OpenPeripheralAddons) have config options to disable items and blocks</p>
+                            <p>This sections are usually names <code>blocks</code> and <code>items</code></p>
+                            <p><strong>Note:</strong> switching any of those flags in config will fully remove block/item from game. Other mods may not like it, so disabling blocks/items for existing worlds must be done with extra carefulness (though FML automatically makes world backup when inconsistency is detected).
                         </div>
                     </div>
                 </div>
@@ -342,6 +356,20 @@ blocks {
                     <div id="ob-9" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p>Send string IMC with key <code>donateUrl</code> and URL as value.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#ob-10">How can I disable flim-flam enchantment?</a>
+                        </h4>
+                    </div>
+                    <div id="ob-10" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p><strong>For new worlds:</strong> just set enchantment id to -1</p>
+                            <p><strong>For existing worlds:</strong> removing any enchantment from game may break world. But in case of flim-flam enchantment, you can just disable all side-effects with <code>flimFlamBlacklist</code> or just potentially harmfull with <code>safeOnly</code>.</p>
+                            <p>You can get list of all flim-flam effects with <code>/flimflam</code> command</p>
                         </div>
                     </div>
                 </div>
