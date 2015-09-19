@@ -1,2 +1,4 @@
 *.jar
+*.pyc
 openmods.info/downloads/*
+openmods.info/faq.html

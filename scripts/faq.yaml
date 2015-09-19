@@ -1,0 +1,380 @@
+---
+- id: general
+  title: General questions
+  questions:
+    - question: How can I get answers to questions that aren't on that list?
+      answer: |
+               Ask us directly in channel `#OpenMods` on [EsperNet](http://esper.net). <!-- Yes, we use IRC. Yes, we know it's not '90. It's just good, time-proven solution -->
+    - question: I checked IRC, but nobody answered me?
+      answer: |
+               First of all, don't ask if you can ask. Ask immediately.
+               
+               Also, don't disconnect few seconds later. We are not bots, it takes some time for us to react.
+               
+               You probably will wait some time for your answer. Especially if you are from timezones that are not GMT+1. <!-- Woohoo, EUROPE! -->
+    - question: How do I report issues?
+      answer: |
+               Our preferred method is via [Github](https://github.com/OpenMods).
+               
+               When reporting anything other than crashlog, please remember to **ALWAYS** specify version you use (modpack name or even version is not enough).
+    - question: What's the difference between release and snapshot?
+      answer: |
+               Snapshot is version of mod created immediately after we push (commit) new code. It may contain WIP features, world breaking bugs or even not start at all.
+               
+               Release (files available on our official page) is specifically selected snapshot that does not contain WIP features and we think should be stable.
+               It also should be one used in modpacks.
+               
+               We usually release all our main mods (OpenModsLib + OpenBlocks + OpenPeripheral) at once, to make sure we get dependencies right.
+    - question: How can I find out which snapshots/version do I have?
+      answer: |
+               All our mods contains that information in `META-INF/MANIFEST.MF` file inside .jar file (which actually is just renamed .zip file).
+               
+               `OpenPeripheral-AIO-*.jar` files are exception, since they are generated manually.
+               They contain file called `versions.txt` which is a list of files used for generation of AIO file.
+    - question: Can you implement my idea/suggestion?
+      answer: |
+               If we like your idea and have time - sure.
+               
+               Unfortunately, our main problem is time - OpenMods currently have only few active developers, so we have to limit our scope
+               <!-- Welp, who am I kidding with all that plurals. "We". Active developerS. Humpf! #BitterOldMan #PleaseWriteCodeForMe -->
+               
+               If you want too see your idea quickly, you may also try to implement it yourself. If you ask us, we will try to help you.
+    - question: Where can I get API for your mods?
+      answer: |
+               We keep APIs in our Maven repo. To add it to your project, simply add following lines to `build.gradle`:
+              
+                   repositories {
+                       maven {
+                           name "OpenMods"
+                           url "http://repo.openmods.info/artifactory/openmods"
+                       }
+                   }
+                   
+                   compile "openperipheral:OpenPeripheralCore-API:3.2" // for OpenPeripheral
+                   compile (group: 'openblocks', name: 'OpenBlocks-API', version: '1.0') // for OpenBlocks (alternative syntax)
+    - question: How to disable item/block?
+      answer: |
+               OpenModsLib based mods (like OpenBlocks and OpenPeripheralAddons) have config options to disable items and blocks<
+               
+               This sections are usually names `blocks` and `items`
+               
+               **Note:** switching any of those flags in config will fully remove block/item from game.
+               Other mods may not like it, so disabling blocks/items for existing worlds must be done with extra carefulness
+               (though FML automatically makes world backup when inconsistency is detected).
+- id: om
+  title: OpenModsLib
+  questions:
+    - question: What is name of OpenModsLib fake player?
+      answer: |
+               OpenModsLib uses more than one fake player. They are created on-demand. Maximum number can be set by changing configuration parameter `fakePlayerThreshold`
+               
+               All OpenMods use same pool of fake players. Names and UUIDs should be same between game sessions.
+               
+               In most cases game uses at most 1-2 players at once, but there are some edge cases (updating multiple blocks with single redstone signal) when more is needed.
+               
+               List of names and UUIDs of first 8 fake players:
+               
+                   OpenModsFakePlayer-001 58d1cfa9-97d6-32a1-8fd8-3508a7cc6aeb
+                   OpenModsFakePlayer-002 2e52f7c0-52d3-3037-a73b-ba968713d5bb
+                   OpenModsFakePlayer-003 7c53ac9a-bf36-3c2f-8d2f-7034c0f83d3e
+                   OpenModsFakePlayer-004 e662cdf1-2c81-397c-b5ba-4ae9672f7af9
+                   OpenModsFakePlayer-005 a0547477-3d9b-364a-964f-bcd18368f9a1
+                   OpenModsFakePlayer-006 4f00f8ab-90c6-38d1-a6be-48d9311fc1bf
+                   OpenModsFakePlayer-007 c5f89732-0644-340d-9002-25c0b93c53b9
+                   OpenModsFakePlayer-008 cc8c0eab-fe73-33db-acf2-07c107aa3744
+               
+               **Note:** recent versions of OpenModsLib should log name and UUID of fake players once they are created.
+- id: ob
+  title: OpenBlocks
+  questions:
+    - question: Grave didn't spawn/Some items are missing?
+      answer: |
+               Code that spawns graves works after all other mods had chance to add their drops. During that time, any mod can modify list of already added items or even cancel drops at all.
+               
+               Graves should always contain items that would be dropped normally - so if item isn't in grave, it would probably not drop even if graves were disabled.
+               
+               Or that should happen, if this was perfect world and perfect code... Though if something goes wrong, we log information in console that contains useful things (like grave spawn location or reason for not spawning). Usually that logs look like this:
+               
+                   [10:04:00] [Server thread/INFO] [OpenMods/]: openblocks.common.PlayerInventoryStore.onPlayerDeath(PlayerInventoryStore.java:303): Storing post-mortem inventory into d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-death-0.dat. It can be restored with command '/ob_inventory restore boq boq-2015-04-05_10.04.00-death-0'
+                   [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler.onPlayerDrops(PlayerDeathHandler.java:349): Scheduling grave placement for player 'EntityPlayerMP['boq'/0, l='OB-clean', x=1001,50, y=51,00, z=999,50]':'com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false]' with 1 items
+                   [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.trySpawnGrave(PlayerDeathHandler.java:230): Grave for com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] will be spawned at (1001,51,999)
+                   [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.backupGrave(PlayerDeathHandler.java:275): Grave backup for player com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] saved to d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-grave-0.dat
+                   
+               **Note:** graves won't spawn in following conditions:
+               
+               - If item list was empty or emptied by other mod before our code handled it
+               - If player drops event was cancelled by other mod
+               - If grave spawn event was cancelled by other mod
+               - If there is no valid location to place it (for example, when player died in spawn-protected region)
+                
+               In last two cases, items will drop on ground
+                
+               If you want to see, what other mods can interfere with grave spawning, please either use EventLog (available [here](misc.html)) or `debug:gravesDebug` config option.
+               You can change value of this option without restart with following command:
+               
+                    /om_config_s set openblocks debug gravesdebug true
+                
+                If command is used, your logs should contain information about drops handlers.
+                If EventLog is used, you have to print it with `/list_events_s` after at least one death.
+                
+    - question: How do I restore my inventory with command?
+      answer: |
+               As you may have noticed from previous question, OpenBlocks has command that allows to restore inventory from before death or examine grave contents, even if grave was already destroyed or not spawned at all.
+               
+               It can be used in two ways:
+               
+               - `/ob_inventory restore` - replaces contents of player's inventory with stored items
+               - `/ob_inventory spawn` - drops whole inventory or just single item in world
+               
+               If you are confused by syntax, almost all parameters have tab-completion.
+               
+               To use it, you need to enable commands in single-player or be op in multi-player.
+               
+               Before you can restore, you need to know which file contains items you want to restore. Path usually looks like this:
+               
+                   saves/<world name>/data/inventory-<player name>-2015-04-04_21.48.30-death-0.dat
+                
+                You can just start typing player name and then press tab key, it should already fill rest with suggestion.
+                Last word specifies what event triggered file creation. Currently it may be one of following strings:
+                
+                - **death** - contents of player's inventory from moment before player death
+                - **grave** - contents of grave
+                - **command** - snapshot of inventory, created with <code>/ob_inventory store</code> command
+    - question: How do I disable graves?
+      answer: |
+               You can disable graves via configuration file, like any other block and item in OpenBlocks. Just make following change to configuration:
+               
+                   blocks {
+                       B:grave=false
+                   }
+               Note that this will also remove all existing graves in save.
+       
+               You can also disable graves per world (just creation, not block), by using gamerule command, i.e.`/gamerule openblocks:spawn_graves false`.
+               This method won't remove existing graves.
+    - question: I disabled graves, but they still spawn?
+      answer: |
+               Are you sure those are our (i.e. OpenBlocks') graves? This seems like silly question, but this is most common solution to this problem.
+               
+               Easiest way to verify that is to look for logs mentioned in one of previous questions.
+    - question: How do I break graves in adventure mode? Can I empty grave without breaking it?
+      answer: |
+               If you can't (or don't want to) break grave, you can just right-click it with shovel.<!-- 2spooky4me -->
+               Unfortunately, we can't control list of block that can be destroyed in adventure mode with specific tool.
+        
+               Also, please remember, that digging graves may get you into trouble. <!-- And make you listen to some crazy german music! -->
+    - question: What happened to radio?
+      answer: |
+               We removed it. <!-- now cry like a little baby -->
+               
+               Between Minecraft 1.6 and 1.7 sound engine changed.
+               When trying to port radio, code started to look more and more like very limited and buggy external player with on/off switch in Minecraft.
+               So it become kind of pointless.
+    - question: Why does elevator not work?
+      answer: |
+               There are usually few possible causes:
+               
+               - Not enough XP. Since few versions elevators drain experience in survival mode. This option can be disabled in configuration.
+               - Too many blocks between elevators. This limitation is also configurable.
+               - Badly implemented air-like blocks. Most mods implemented various fake air, light and tracking blocks right, but there is still room for misbehaving implementation.<!-- We are paranoid -->
+               - Different elevator colors. Elevators will only teleport to other elevators with same color.
+    - question: Does <code>/ob_inventory restore</code> work on non-vanilla inventories?
+      answer: |
+               This depends on other mods.
+               
+               Currently OpenBlocks contains code that allows storing such inventories and events to signal loading and storing inventory (`openblocks.api.InventoryEvent.*`).
+               
+               Though it's recent addition and as far as we know, no mod uses that.
+               
+               We may add integration directly in OpenBlocks, if mod has proper API.
+    - question: Why doesn't building guide show any markers?
+      answer: Since version 1.3 this block needs redstone power to work. This behavior can be configured with `guide.redstoneSensitivity` configuration option.
+      
+    - question: How can I add information about my mod to donation station?
+      answer: Send string IMC with key `donateUrl` and URL as value.
+    
+    - question: How can I disable flim-flam enchantment?
+      answer: |
+               **For new worlds:** just set enchantment id to -1
+               
+               **For existing worlds:** removing any enchantment from game may break world.
+               But in case of flim-flam enchantment, you can just disable all effects with blacklist/whitelist stored in `flimFlamBlacklist`+`reverseBlacklist` config option or just disable potentially harmful ones with `safeOnly`.
+               
+               You can get list of all flim-flam effects by using tab-expansion on `/flimflam` command.
+- id: op
+  title: OpenPeripheral - general
+  questions:
+    - question: Where can I find documentation for peripherals?
+      answer: |
+               First, an explanation: we don't include any documentation on our page, since it may be different for any Minecraft instance. Adding or removing mods may change list of methods available to you.
+               Also, since method lists are generated in runtime, it's impossible to list all methods at once.
+               So keeping full, centralized list takes too much effort and will be probably obsolete the moment we publish it. That's why we rely on auto-generated documentation.
+       
+               There are few ways to get documentation:
+               
+               - Offline, with `/op_dump`. This command will generate HTML file with all information available at the moment of execution (this list may expand the more you play).
+               - In-game, with `openp/docs` program (should be added to filesystem once you attach at least one peripheral).
+               - (ComputerCraft only) In-game, with built-in `help` command. OpenPeripheral adds entries to help topics list. For example, if peripheral is attached on left side of computer, methods can be checked with `help left`.
+               - (OpenComputers only) In-game, by printing peripheral proxy with `=`
+               - In-game, with `.listSources()`, `.listMethods(source)` and `.doc(method_name)`. Every object or peripheral generated by OpenPeripheral has those methods. They can be used to quickly check arguments and description of methods.
+       
+               Example of using last method to get information:
+               ![ingame-doc](downloads/cc-doc.png)
+    - question: Why did you split OpenPeripheral into three mods?
+      answer: |
+               Because we <!-- I --> realized that original OpenPeripherals actually had three separate areas. Also, split gave us some flexibility in updating mods.
+               
+               - **OpenPeripheralCore** is library/base that can be used to provide easy integration to other mods. So it wouldn't be good idea to provide library that contains game content, since other mods may use it, but users aren't possibly interested in other content
+               - **OpenPeripheralIntegration** - it's probably hardest mod to maintain, since it depends on multiple other mods and API. After split, it is much easier to release just that part, without worrying about ongoing development in two other mods
+               - **OpenPeripheralAddons** - it's just gameplay mod. Some may find it useless, but still keep other two mods
+    - question: What is OpenPeripheral-AIO file?
+      answer: |
+               AIO == All-In-One. Even though we split OpenPeripheral in three separate mods, we know it may be frustrating to keep track of three separate files.
+               
+               So for convenience we release all three mods joined into one .jar file. It has same functionality as three separate ones.
+               
+               Though if you are modpack creator, you should probably use separate files - your users won't notice, but it should be easier to update just single file.
+               
+               All AIO files contain <code>versions.jar</code> file inside that lists files used to create it.
+- id: op-core
+  title: OpenPeripheralCore
+  questions:
+    - question: Why can't I print result of some functions?
+      answer: |
+               Some functions may return table of functions.
+               Lua by default can't print functions, so tables containing them are unprintable.
+               
+               If you get one from OpenPeripheral method, you can always call `.listMethods()` to find out what it can do.
+               Or you may just use plain Lua to list keys, like this:
+                   for k,v in pairs(t) do print(k) end
+    - question: Why OpenPeripheral methods are not visible for some blocks?
+      answer: |
+               Our philosophy is to generate peripherals only for blocks that don't do it itself.
+               So if block already has ANY methods, we don't touch it.
+               
+               Though it's probably only ComputerCraft problem, since OpenComputers automatically merge methods from different sources.
+    - question: How can I prevent OpenPeripheral from generating peripheral for my blocks?
+      answer: |
+               - `openperipheral.api.peripheral.Ignore` annotation on TileEntity class
+               - Any field called `OPENPERIPHERAL_IGNORE`in TileEntity class
+               - IMC message with key `ignoreTileEntity` and full class name as value
+               - Explicit registration via `openperipheral.api.peripheral.IPeripheralBlacklist#addToBlacklist(Class)`
+    - question: Why calling some peripheral or object methods slows my program?
+      answer: |
+               Most of methods on peripheral are "synchronized" - that means they can only execute at the end of game tick (about 1/20s).
+               This is unfortunate side-effect of Minecraft single threaded architecture
+               
+               We examined few methods and determined they can be asynchonous - i.e. executed at any time.
+               If such method is called, execution of program is not paused and it can run at full speed.
+               
+               Sometimes we may mistakenly mark method as synchronous.
+               If you notice that your programs work (or have recently started) working very slow, please contact us so we can investigate.
+- id: op-addons
+  title: OpenPeripheralAddons
+  questions:
+    - question: I added some elements to terminal glasses but nothing shows?
+      answer: |
+                You need to call `.sync()` to make any changes visible to users.
+                Note, that this method is synchronized, i.e. will wait for end of tick before execution.
+                If you call it too often, it will slow your program.
+                
+                Usually it good to start coding with event loop, like presented in this [demo](https://gist.github.com/boq/67300900797b113a124d)
+    - question: Why I shouldn't call <code>.clear()</code> every tick?<!-- They usually ask that after I tell them not to do that -->
+      answer: |
+               Calling `.clear()` and recreating screen every time after something changes generates unnecessary updates sent to users.
+               It's better to just keep reference to object and update single property, like this:
+               
+                   box = p.addBox(10,10,10,10,0xFF0000)
+                   p.sync()
+                   b.setColor(0x00FF00)
+                   p.sync()
+    - question: What are terminal glasses events?
+      answer: |
+               When attached to computer terminal bridge will send events received from terminal glasses and wireless keyboard.
+               List is available [here](https://gist.github.com/boq/9a098b89ee102cbf1b2b)
+- id: op-integration
+  title: OpenPeripheralIntegration
+  questions:
+    - question: Can OpenPeripheral display or modify raw NBT data?
+      answer: |
+               Short answer: no.
+                            
+               Slightly longer answer: noooo.
+               Some mods keep sensitive data in there.
+               But for most common structures we usually provide translators, that return them in safe way.
+               And we make available value called <code>nbt_hash</code>. It can be used to match and compare items.
+    - question: What mods are supported by OpenPeripheralIntegration
+      answer: |
+               - Vanilla
+               - CoFH API (including RF API)
+               - BuildCraft
+               - IndustrialCraft<sup>2</sup>
+               - Railcraft
+               - Thaumcraft
+               - MineFactoryReloaded
+               - EnderStorage
+               - Forestry
+               - Mystcraft
+               - Thaumcraft
+               - ThermalExpansions
+               - Applied Energistics 2
+    - question: When will you support mod X?
+      answer: |
+               Depends. If mod has well defined and mature API: when we have time to implement that. Without API: probably never.
+               
+               Supporting and maintaining integration for multiple mods is very time consuming (especially when mods have different release cycles).
+               
+               We try to do what we can, but just don't have enough time to expand it every time new, interesting mod shows up.
+               
+               Though we won't complain if somebody makes pull request with functionality. After all, it's open-source mod.
+    - question: Why did my program suddenly stopped working?
+      answer: |
+               There are usually two possible causes:
+                
+               - Mod has changed API and integration module failed to load properly. This should be reported in logs, like this
+                 
+                         [23:12:15] [Client thread/WARN] [OpenMods]: Can't load integration module 'Mystcraft (mod) CC integration module'
+                     
+                 Please report it to us and wait for fixes.
+               - Between versions, we may have also change method names or remove it at all.
+               It happens when we find out better way to do some tasks.
+               Though we try to minimize breaking changes.
+               Please review your program and update.
+    - question: Vanilla furnace behaves weird?
+      answer: |
+               Well, vanilla is weird. And furnace is one of the best examples of it<!-- this is what we professionals call 'notch code' -->.
+               Unfortunately, we can't do anything about it.
+    - question: How do I disable integration for single mod?
+      answer: |
+               Just go to configs and disable something that looks like it might do the job.
+               OpenPeripheralIntegration also has in-game Config GUI (go to mod list from main menu, select mod and click 'Config' under).
+    - question: How do I use Applied Energistics 2 integration?
+      answer: |
+               Methods like <code>requestCrafting</code>, <code>exportItem</code> and <code>getItemDetail</code> (first two available only on ME interfaces) need table with 1,2 or 3 fields:
+               
+                   { id, [ dmg, nbt_hash ] }
+                   
+               `id` is name of item, like `minecraft:dirt`. `dmg` is damage/metadata (if not present, catch-all value -1 will be used) and `nbt_hash` is Java has of NBT structure (since we don't operate on raw NBT).
+                    
+                This structure is compatible with one returned from methods like `getStackInSlot` from normal inventories, so for more complicated items you can just keep one template stack in chest and use it to request more (or just store and hardcode hash in program).
+    - question: How do I describe item stack in Lua?
+      answer: |
+               Table as 1, 2 or 3 fields:
+               
+                   { id, [ dmg, qty ] }
+                
+               `id` is name of item, like `minecraft:dirt`. `dmg` is damage/metadata and `qty` is number of items.
+               If you want to read extra attributes, you can pass this simple structure to function `expandStack` available on any inventory block.
+    - question: Some functions (like sensor methods) return functions instead of data?
+      answer: |
+               This structure (called proxy) contains same data, but hidden behind methods.
+               It was done to limit number of information printed on screen and to speed up data retrieval (no need to collect all information, when user needs just position).
+               
+               There are following methods on this object
+               
+               - `basic` - returns basic information (like position or item name, etc.)
+               - `keys` - returns list of available attributes 
+               - `single` - get single attribute
+               - `select` - return multiple attributes as table
+               - `all` - return all attributes (same as old functionality)
+        
+               Of course, since it's normal OpenPeripheral object, you can just use normal techniques (i.e. `listMethods()` and others) to discover what this object can do.
