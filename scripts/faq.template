@@ -37,10 +37,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#${category['id']}-${loop.index}">${entry['question']}</a>
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" id="${category['id']}-${loop.index}" href="#expand-${category['id']}-${loop.index}">${entry['question']}</a>
                             </h4>
                         </div>
-                        <div id="${category['id']}-${loop.index}" class="panel-collapse collapse">
+                        <div id="expand-${category['id']}-${loop.index}" class="panel-collapse collapse">
                             <div class="panel-body">
                                 ${entry['answer']}
                             </div>
@@ -48,7 +48,7 @@
                     </div>
                     % endfor # entry
                 %endfor #category
-                
+
                 <!-- Me no speek english. Me sorry for errors. Xhejn. -->
             </div>
         </div>
