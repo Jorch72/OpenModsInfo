@@ -6,6 +6,8 @@
 *.svg   text
 *.json   text
 .htaccess text
+*.py text
+*.yaml text
 
 *.ttf   -text
 *.eot   -text
