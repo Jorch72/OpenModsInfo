@@ -84,6 +84,25 @@
                    OpenModsFakePlayer-008 cc8c0eab-fe73-33db-acf2-07c107aa3744
                
                **Note:** recent versions of OpenModsLib should log name and UUID of fake players once they are created.
+    - question: "After installing OpenModsLib game shuts down with message `The mods and versions listed below could not be found: OpenModsCore : any`"
+      answer: |
+               You probably have installed OpenModsLib incorrectly.
+               
+               OpenModsCore is sub-mod, fully contained in OpenModsLib - no action needed. Just drop OpenModsLib JAR file into `mods` folder.
+               
+               We are not really sure what exactly causes that problem (if you have any ideas, tell us on IRC). Our current guesses are:
+               
+               - unpacked JAR file <!-- It's not 2013, really, stop doing that -->
+               - misconfigured third-party launcher
+               - ???
+    - question: "I tried to start OpenModsLib in development mode, but it's shuts down with message `The mods and versions listed below could not be found: OpenModsCore : any`"
+      answer: |
+               When you start mod in source code form from IDE, Forge/FML is missing information normally available in JAR file.
+               
+               To start game you need to do one of two things:
+               
+               - copy file `etc/open_mods_lib_dummy_jar.jar` from repo to `mods` folder
+               - add `-Dfml.coreMods.load=openmods.core.OpenModsCorePlugin` to JVM command line
 - id: ob
   title: OpenBlocks
   questions:
