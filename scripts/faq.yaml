@@ -108,33 +108,55 @@
   questions:
     - question: Grave didn't spawn/Some items are missing?
       answer: |
-               Code that spawns graves works after all other mods had chance to add their drops. During that time, any mod can modify list of already added items or even cancel drops at all.
+               We receive quite a lot of grave bug reports and most of them are, unfortunately, invalid. So here's basic checklist for debugging graves:
                
-               Graves should always contain items that would be dropped normally - so if item isn't in grave, it would probably not drop even if graves were disabled.
+               1.     Are you sure they are our graves? Yes, it happens... Check it through WAILA or by just comparing with picture below before continuing.
+                       ![memememe](downloads/graveshot.png)
+                   
+               2.    Code that spawns graves works after all other mods had chance to add their drops. During that time, any mod can modify list of already added items or even cancel drops at all.
                
-               Or that should happen, if this was perfect world and perfect code... Though if something goes wrong, we log information in console that contains useful things (like grave spawn location or reason for not spawning). Usually that logs look like this:
-               
-                   [10:04:00] [Server thread/INFO] [OpenMods/]: openblocks.common.PlayerInventoryStore.onPlayerDeath(PlayerInventoryStore.java:303): Storing post-mortem inventory into d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-death-0.dat. It can be restored with command '/ob_inventory restore boq boq-2015-04-05_10.04.00-death-0'
-                   [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler.onPlayerDrops(PlayerDeathHandler.java:349): Scheduling grave placement for player 'EntityPlayerMP['boq'/0, l='OB-clean', x=1001,50, y=51,00, z=999,50]':'com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false]' with 1 items
-                   [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.trySpawnGrave(PlayerDeathHandler.java:230): Grave for com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] will be spawned at (1001,51,999)
-                   [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.backupGrave(PlayerDeathHandler.java:275): Grave backup for player com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] saved to d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-grave-0.dat
+                     Graves should always contain items that would be dropped normally - so if item isn't in grave, it would probably not drop even if graves were disabled.
+                  
+                     First step is to make sure this isn't the case.
+                  
+                     Please recreate this death in following conditions:
+                     
+                     - in flatworld
+                     - with the same mods
+                     - with inventory reproduced as close as possibly (may be restored with `ob_inventory restore`)
+                     - after switch to survival
+                     If grave didn't spawn, then it's possible that some other mod captures all drops before our code.
+                  
+               3.    To fully verify it, use `/gamerule openblocks:spawn_graves false` command to disable graves in this world and re-test again. If nothing drops, try to identify mod that causes that.
+                
+               4.    Look for logs. Some of them will be displayed in console as warnings (this includes issues that prevent graves from spawning), some of them will be visible only in log file.
+                    
+                     Logs from correct grave spawn look like this (only line with `INFO` will be visible in console):
+                   
+                        [10:04:00] [Server thread/INFO] [OpenMods/]: openblocks.common.PlayerInventoryStore.onPlayerDeath(PlayerInventoryStore.java:303): Storing post-mortem inventory into d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-death-0.dat. It can be restored with command '/ob_inventory restore boq boq-2015-04-05_10.04.00-death-0'
+                        [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler.onPlayerDrops(PlayerDeathHandler.java:349): Scheduling grave placement for player 'EntityPlayerMP['boq'/0, l='OB-clean', x=1001,50, y=51,00, z=999,50]':'com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false]' with 1 items
+                        [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.trySpawnGrave(PlayerDeathHandler.java:230): Grave for com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] will be spawned at (1001,51,999)
+                        [10:04:00] [Server thread/DEBUG] [OpenMods/]: openblocks.common.PlayerDeathHandler$GraveCallable.backupGrave(PlayerDeathHandler.java:275): Grave backup for player com.mojang.authlib.GameProfile@1e9688fa[id=26cceef4-dead-beef-8152-b49f124a11f7,name=boq,properties={},legacy=false] saved to d:\minecraft\forge-dev-1.7.10\saves\OB-clean\data\inventory-boq-2015-04-05_10.04.00-grave-0.dat
+                     If some of those line are missing, report that to us.
                    
                **Note:** graves won't spawn in following conditions:
                
-               - If item list was empty or emptied by other mod before our code handled it
+               - If drops list was empty or emptied by other mod before our code handled it
                - If player drops event was cancelled by other mod
                - If grave spawn event was cancelled by other mod
                - If there is no valid location to place it (for example, when player died in spawn-protected region)
                 
-               In last two cases, items will drop on ground
+               In last two cases, items will drop on ground.
                 
-               If you want to see, what other mods can interfere with grave spawning, please either use EventLog (available [here](misc.html)) or `debug:gravesDebug` config option.
+               If you want to see, what other mods can interfere with grave spawning, please use either `debug:gravesDebug` config option or EventLog (available [here](misc.html)).
                You can change value of this option without restart with following command:
                
                     /om_config_s set openblocks debug gravesdebug true
                 
                 If command is used, your logs should contain information about drops handlers.
                 If EventLog is used, you have to print it with `/list_events_s` after at least one death.
+                
+                If grave is spawned, contents will be stored in appropriate file (see next question). OpenBlocks will also store pre-death inventory in separate file. This usually is done before other mods have change to modify it, so it may be more reliable.
                 
     - question: How do I restore my inventory with command?
       answer: |
