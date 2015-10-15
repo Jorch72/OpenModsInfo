@@ -9,7 +9,7 @@
         <meta name="author" content="">
 
         <title>OpenMods</title>
-
+        <!-- generated on ${timestamp} -->
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -53,6 +53,14 @@
                 </p>
         </div>
 
+<%def name="file_info(info)" >
+    <strong>File name:</strong> ${info.name}<br />
+    <strong>Released:</strong> ${info.date.strftime("%Y-%m-%d")}<br />
+    <strong>Size:</strong> ${info.size}<br />
+    <strong>MD5:</strong> ${info.md5}<br />
+    <!-- SHA256:</strong> ${info.sha256} -->
+</%def>
+
         <div class="container">
             <!-- Hey, it's me again! I know how to HTML. Except I don't. XOXO boq -->
             <div class="row">
@@ -68,17 +76,21 @@
                     <h2>OpenModsLib</h2>
                     <p>This is required for all of our mods.</p>
                     <p class="btn-group">
-                        <a class="btn btn-success" href="downloads/OpenModsLib-1.7.10-0.8.jar" role="button" data-tracking="open_mods_lib:download:mc1.7">Download OpenModsLib 0.8 »</a>
+                        <a class="btn btn-success" href="downloads/${files["OpenModsLib"].name}" role="button" data-tracking="open_mods_lib:download:mc1.7">Download OpenModsLib ${files["OpenModsLib"].version} »</a>
+                        <a href="#openmodslib-info" class="btn btn-info">?</a>
                         <a href="https://docs.google.com/document/d/1LLZYo9rx9vVhaJDoDF6UmDt0Xio4vRGpx5c88GjyUz4/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_mods_lib:jump:changelog">Changelog</a>
                     </p>
+                    <div id="openmodslib-info" class="file-info">${file_info(files["OpenModsLib"])}</div>
                 </div>
                 <div class="col-md-6">
                     <h2>OpenBlocks</h2>
-                    <p>OpenBlocks introduces a range of random ideas into Minecraft. There is no theme. Some of it is rather silly! <strong>Requires OpenModsLib 0.8</strong>.</p>
+                    <p>OpenBlocks introduces a range of random ideas into Minecraft. There is no theme. Some of it is rather silly! <strong>Requires OpenModsLib ${files["OpenModsLib"].version}</strong>.</p>
                     <p class="btn-group">
-                        <a class="btn btn-success" href="downloads/OpenBlocks-1.7.10-1.4.4.jar" role="button" data-tracking="open_blocks:download:mc1.7">Download OpenBlocks 1.4.4 »</a>
+                        <a class="btn btn-success" href="downloads/${files["OpenBlocks"].name}" role="button" data-tracking="open_blocks:download:mc1.7">Download OpenBlocks ${files["OpenBlocks"].version} »</a>
+                        <a href="#openblocks-info" class="btn btn-info">?</a>
                         <a href="https://docs.google.com/document/d/1BqSDxmUuZduNjD4ST8fAYw02-USRynQP31AbYn1UKcw/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_blocks:jump:changelog">Changelog</a>
                     </p>
+                    <div id="openblocks-info" class="file-info">${file_info(files["OpenBlocks"])}</div>
                 </div>
             </div>
             <div class="row">
@@ -92,29 +104,37 @@
                             <li><strong>Addons</strong> - few peripherals, like Terminal Glasses, PIMs, Peripheral Proxies</li>
                             <li><strong>Integration</strong> - generic adapters for various blocks from vanilla and other mods</li>
                        </ul>
-                    <p> <strong>Requires OpenModsLib 0.8 and ComputerCraft 1.7 and/or OpenComputers 1.5.</strong></p>
+                    <p> <strong>Requires OpenModsLib ${files["OpenModsLib"].version} and ComputerCraft 1.7 and/or OpenComputers 1.5.</strong></p>
                     <p>You can either download everything as all-in-one package or as three separate jars (suggested for modpacks)</p>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-5">
                                 <p class="btn-group">
-                                    <a class="btn btn-success" href="downloads/OpenPeripheral-1.7.10-AIO-5.jar" role="button" data-tracking="open_peripheral_aio:download:mc1_7">Download OpenPeripheral All-In-One »</a>
+                                    <a class="btn btn-success" href="downloads/${files["OpenPeripheral"].name}" role="button" data-tracking="open_peripheral_aio:download:mc1_7">Download OpenPeripheral All-In-One »</a>
+                                    <a href="#openperipheralaio-info" class="btn btn-info">?</a>
                                 </p>
+                                <div id="openperipheralaio-info" class="file-info">${file_info(files["OpenPeripheral"])}</div>
+                                <div id="openperipheralcore-info" class="file-info">${file_info(files["OpenPeripheralCore"])}</div>
+                                <div id="openperipheraladdons-info" class="file-info">${file_info(files["OpenPeripheralAddons"])}</div>
+                                <div id="openperipheralintegration-info" class="file-info">${file_info(files["OpenPeripheralIntegration"])}</div>
                             </div>
                             <div class="col-md-1">
                                 OR
                             </div>
                             <div class="col-md-6">
                                 <p class="btn-group">
-                                    <a class="btn btn-success" href="downloads/OpenPeripheralCore-1.7.10-1.2.jar" role="button" data-tracking="open_peripheral_core:download:mc1.7">Download OpenPeripheralCore 1.2 »</a>
+                                    <a class="btn btn-success" href="downloads/${files["OpenPeripheralCore"].name}" role="button" data-tracking="open_peripheral_core:download:mc1.7">Download OpenPeripheralCore ${files["OpenPeripheralCore"].version} »</a>
+                                    <a href="#openperipheralcore-info" class="btn btn-info">?</a>
                                     <a href="https://docs.google.com/document/d/1h-wLMLlmslNj7JYLTEbaaHTUgjbVceDIp_JYi6jGRUM/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_peripheral_core:jump:changelog">Changelog</a>
                                 </p>
                                 <p class="btn-group">
-                                    <a class="btn btn-success" href="downloads/OpenPeripheralAddons-1.7.10-0.4.jar" role="button" data-tracking="open_peripheral_addons:download:mc1.7">Download OpenPeripheralAddons 0.4 »</a>
+                                    <a class="btn btn-success" href="downloads/${files["OpenPeripheralAddons"].name}" role="button" data-tracking="open_peripheral_addons:download:mc1.7">Download OpenPeripheralAddons ${files["OpenPeripheralAddons"].version} »</a>
+                                    <a href="#openperipheraladdons-info" class="btn btn-info">?</a>
                                     <a href="https://docs.google.com/document/d/1YjFbIburoX3x-jIUUUEOkCCi8T29zgDuuQ97hpm8uxo/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_peripheral_addons:jump:changelog">Changelog</a>
                                 </p>
                                 <p class="btn-group">
-                                    <a class="btn btn-success" href="downloads/OpenPeripheralIntegration-1.7.10-0.3.jar" role="button" data-tracking="open_peripheral_integration:download:mc1.7">Download OpenPeripheralIntegration 0.3 »</a>
+                                    <a class="btn btn-success" href="downloads/${files["OpenPeripheralIntegration"].name}" role="button" data-tracking="open_peripheral_integration:download:mc1.7">Download OpenPeripheralIntegration ${files["OpenPeripheralIntegration"].version} »</a>
+                                    <a href="#openperipheralintegration-info" class="btn btn-info">?</a>
                                     <a href="https://docs.google.com/document/d/1B1UihKPmsTVlqV-rnputa6e9odhfdi17zhRAoF-3OtE/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_peripheral_integration:jump:changelog">Changelog</a>
                                 </p>
                             </div>
@@ -123,7 +143,7 @@
                 </div>
                 <div class="col-md-1"></div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 20px">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

@@ -2,3 +2,5 @@
 *.pyc
 openmods.info/downloads/*
 openmods.info/faq.html
+openmods.info/index.html
+releases/*
