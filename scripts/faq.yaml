@@ -17,6 +17,9 @@
                Our preferred method is via [Github](https://github.com/OpenMods).
                
                When reporting anything other than crashlog, please remember to **ALWAYS** specify version you use (modpack name or even version is not enough).
+    - question: Where do I report errors, typos and broken stuff on this page?
+      answer: |
+               [Here](https://github.com/OpenMods/openmods.info/issues).
     - question: What's the difference between release and snapshot?
       answer: |
                Snapshot is version of mod created immediately after we push (commit) new code. It may contain WIP features, world breaking bugs or even not start at all.
