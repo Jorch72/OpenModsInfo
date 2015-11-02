@@ -106,6 +106,14 @@
                
                - copy file `etc/open_mods_lib_dummy_jar.jar` from repo to `mods` folder
                - add `-Dfml.coreMods.load=openmods.core.OpenModsCorePlugin` to JVM command line
+    - question: "Server is crashing with exception <code>java.lang.LinkageError: loader constraint violation</code>?"
+      answer: |
+               We know more of less why that happens, but we don't know exact scenario that causes it.
+               
+               Anyway, most of the time it's caused by client-side mods on server (usually LiteLoader).
+               We also got reports about this being caused by badly placed, corrupted or modified Forge JAR file.
+               
+               If you happen to get this (or even fix it on your own), please let us know.
 - id: ob
   title: OpenBlocks
   questions:
@@ -115,8 +123,17 @@
                
                1.     Are you sure they are our graves? Yes, it happens... Check it through WAILA or by just comparing with picture below before continuing.
                        ![memememe](downloads/graveshot.png)
+                       
+               2.   _(optional)_ Check for conflicting mods. We received information that some mods have options that disable/filter drops. Here's unofficial and totally not verified list.
+                     If you know more, let us know.
+                    
+                     - Advent of Ascension
+                     - CombatLog plugin
+                     - ???
+                        
+                     Look at the end of this question for method of getting all mods that may change drops mechanics.
                    
-               2.    Code that spawns graves works after all other mods had chance to add their drops. During that time, any mod can modify list of already added items or even cancel drops at all.
+               3.    Code that spawns graves works after all other mods had chance to add their drops. During that time, any mod can modify list of already added items or even cancel drops at all.
                
                      Graves should always contain items that would be dropped normally - so if item isn't in grave, it would probably not drop even if graves were disabled.
                   
@@ -130,9 +147,9 @@
                      - after switch to survival
                      If grave didn't spawn, then it's possible that some other mod captures all drops before our code.
                   
-               3.    To fully verify it, use `/gamerule openblocks:spawn_graves false` command to disable graves in this world and re-test again. If nothing drops, try to identify mod that causes that.
+               4.    To fully verify it, use `/gamerule openblocks:spawn_graves false` command to disable graves in this world and re-test again. If nothing drops on the ground, try to identify mod that causes that.
                 
-               4.    Look for logs. Some of them will be displayed in console as warnings (this includes issues that prevent graves from spawning), some of them will be visible only in log file.
+               5.    Look for logs. Some of them will be displayed in console as warnings (this includes issues that prevent graves from spawning), some of them will be visible only in log file.
                     
                      Logs from correct grave spawn look like this (only line with `INFO` will be visible in console):
                    
@@ -151,12 +168,14 @@
                 
                In last two cases, items will drop on ground.
                 
+               **Advanced debug methods**
+               
                If you want to see, what other mods can interfere with grave spawning, please use either `debug:gravesDebug` config option or EventLog (available [here](misc.html)).
                You can change value of this option without restart with following command:
                
                     /om_config_s set openblocks debug gravesdebug true
                 
-                If command is used, your logs should contain information about drops handlers.
+                If command is used, your logs should contain information about drops handlers. **Note:** This information will be visible only in log file, not in console.
                 If EventLog is used, you have to print it with `/list_events_s` after at least one death.
                 
                 If grave is spawned, contents will be stored in appropriate file (see next question). OpenBlocks will also store pre-death inventory in separate file. This usually is done before other mods have change to modify it, so it may be more reliable.
@@ -289,7 +308,9 @@
                
                If you get one from OpenPeripheral method, you can always call `.listMethods()` to find out what it can do.
                Or you may just use plain Lua to list keys, like this:
+               
                    for k,v in pairs(t) do print(k) end
+               
     - question: Why OpenPeripheral methods are not visible for some blocks?
       answer: |
                Our philosophy is to generate peripherals only for blocks that don't do it itself.
