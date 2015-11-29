@@ -1,0 +1,22 @@
+---
+0.3:
+    - feature: expanded safari net meta provider
+    - feature: vanilla's flower pots adapter
+    - feature: vanilla's skulls adapter
+    - feature: config option to disable mod manipulation methods
+    - tweak: AE data can now be retrieved without proxies (second argument in getAvailableItems)
+0.2.2:
+    - fix: "align to Mystcraft 0.11.6.02 (note: versions between 0.11.1.00 and 0.11.6.02 are no longer supported)"
+0.2.1:
+    - feature: meta providers for entity item, item frame, paintings, armor pieces, tools and swords
+    - feature: added info about experience to player meta provider
+    - fix: added custom filter logic to few item meta providers (less fake entries)
+0.2:
+    - feature: AE2 integration (contributed by *thraaawn*)
+    - feature: added nbt_fingerprints to ItemStacks, to allow requesting from items with NBT tags
+    - feature: print oredict names for items
+    - feature: added MFR DSU and JABBA support
+    - fix: remote version restriction removed (mod is now required just on server side)
+    - fix: re-add forgotten TE lamp integration
+0.1.0:
+    - other: Move integration from OpenPeripheral-Core

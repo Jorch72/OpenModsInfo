@@ -26,7 +26,7 @@
                 <p class="lead">Open to use, open to modify, open to learn from, open to ideas</p>
                 <p style="margin-top:40px">Yes, you can use these in your mod pack ;-)</p>
                 <p >
-                    <a class="btn btn-small btn-default" role="button" href="faq.html" target="_blank" data-tracking="faq:jump">
+                    <a class="btn btn-small btn-default" role="button" href="faq.html">
                         <img src="images/faq.png" style="height: 1.75em;" alt="FAQ"/>
                         FAQ
                     </a>
@@ -78,7 +78,7 @@
                     <p class="btn-group">
                         <a class="btn btn-success" href="downloads/${files["OpenModsLib"].name}" role="button" data-tracking="open_mods_lib:download:mc1.7">Download OpenModsLib ${files["OpenModsLib"].version} »</a>
                         <a href="#openmodslib-info" class="btn btn-info">?</a>
-                        <a href="https://docs.google.com/document/d/1LLZYo9rx9vVhaJDoDF6UmDt0Xio4vRGpx5c88GjyUz4/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_mods_lib:jump:changelog">Changelog</a>
+                        <a href="changelog-openmodslib.html" class="btn btn-info">Changelog</a>
                     </p>
                     <div id="openmodslib-info" class="file-info">${file_info(files["OpenModsLib"])}</div>
                 </div>
@@ -88,7 +88,7 @@
                     <p class="btn-group">
                         <a class="btn btn-success" href="downloads/${files["OpenBlocks"].name}" role="button" data-tracking="open_blocks:download:mc1.7">Download OpenBlocks ${files["OpenBlocks"].version} »</a>
                         <a href="#openblocks-info" class="btn btn-info">?</a>
-                        <a href="https://docs.google.com/document/d/1BqSDxmUuZduNjD4ST8fAYw02-USRynQP31AbYn1UKcw/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_blocks:jump:changelog">Changelog</a>
+                         <a href="changelog-openblocks.html" class="btn btn-info">Changelog</a>
                     </p>
                     <div id="openblocks-info" class="file-info">${file_info(files["OpenBlocks"])}</div>
                 </div>
@@ -125,17 +125,17 @@
                                 <p class="btn-group">
                                     <a class="btn btn-success" href="downloads/${files["OpenPeripheralCore"].name}" role="button" data-tracking="open_peripheral_core:download:mc1.7">Download OpenPeripheralCore ${files["OpenPeripheralCore"].version} »</a>
                                     <a href="#openperipheralcore-info" class="btn btn-info">?</a>
-                                    <a href="https://docs.google.com/document/d/1h-wLMLlmslNj7JYLTEbaaHTUgjbVceDIp_JYi6jGRUM/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_peripheral_core:jump:changelog">Changelog</a>
+                                    <a href="changelog-openperipheralcore.html" class="btn btn-info">Changelog</a>
                                 </p>
                                 <p class="btn-group">
                                     <a class="btn btn-success" href="downloads/${files["OpenPeripheralAddons"].name}" role="button" data-tracking="open_peripheral_addons:download:mc1.7">Download OpenPeripheralAddons ${files["OpenPeripheralAddons"].version} »</a>
                                     <a href="#openperipheraladdons-info" class="btn btn-info">?</a>
-                                    <a href="https://docs.google.com/document/d/1YjFbIburoX3x-jIUUUEOkCCi8T29zgDuuQ97hpm8uxo/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_peripheral_addons:jump:changelog">Changelog</a>
+                                    <a href="changelog-openperipheraladdons.html" class="btn btn-info">Changelog</a>
                                 </p>
                                 <p class="btn-group">
                                     <a class="btn btn-success" href="downloads/${files["OpenPeripheralIntegration"].name}" role="button" data-tracking="open_peripheral_integration:download:mc1.7">Download OpenPeripheralIntegration ${files["OpenPeripheralIntegration"].version} »</a>
                                     <a href="#openperipheralintegration-info" class="btn btn-info">?</a>
-                                    <a href="https://docs.google.com/document/d/1B1UihKPmsTVlqV-rnputa6e9odhfdi17zhRAoF-3OtE/edit?usp=sharing" class="btn btn-info" target="_blank" data-tracking="open_peripheral_integration:jump:changelog">Changelog</a>
+                                    <a href="changelog-openperipheralintegration.html" class="btn btn-info">Changelog</a>
                                 </p>
                             </div>
                         </div>

@@ -1,0 +1,85 @@
+---
+1.2:
+    - other: Update API to 3.3.1
+    - feature: Structures - POJOs with automatic conversion
+    - feature: IndexedProperties (with support for arrays, List, Set, Map, structures)
+    - feature: expanded type documentation (and generation)
+    - feature: property update listeners
+    - feature: IArchitecture for basic architecture info
+    - feature: Index helper type, for automatic conversion of index (for example zero-based index to one-based language)
+    - feature: ItemStack metadata provider now adds damage bar info
+    - feature: user-configurable peripheral names (see 
+    - fix: memory leak in CC peripheral provider
+    - fix: allow nullable values on properties
+    - fix: crash when signalling on unloaded computer
+1.1.1:
+    - feature: print type range in docs (when available, currently only for enums)
+    - fix: reflection helper methods not working
+1.1:
+    - feature: meta providers with custom filter logic
+    - fix: meta proxy methods are now asynchronous
+    - fix: optional parameter implies nullability
+    - tweak: API peripheral builder will now throw exception instead of returning dummy peripheral
+1.0:
+    - big_other: Restructured API
+    - big_feature: OpenComputers integration
+    - feature: UUID converter
+    - feature: FluidStack converter
+    - feature: .listMethods can now filter methods from single source
+    - feature: "HTML docs generation via `/op_dump` (XSLT by **Spauldo**)"
+    - feature: peripherals now add help entries to CC (try `help <side>`)
+    - feature: meta providers now can return proxy instead of full objects (improvers performance)
+    - feature: type converters are now generic (support for `List<T>` , `Map <K,V>` , etc)
+    - fix: moved CC peripheral registration after postLoad to improve compatibility
+0.5.0:
+    - big_other: Port to Minecraft 1.7.10
+    - big_other: Split integration with other mods to OpenPeripheral-Integration
+    - other: Re-do API
+    - other: IMC for TE blacklisting
+    - other: Random fixes and stuff (sooo much detail...)
+0.4.1:
+    - fix: OpenPeripheral behaving very, very bad on chunk unload
+    - fix: computer hanging on detached peripherals in some cases
+    - fix: MystCraft write symbol broken
+0.4:
+    - feature: ComputerCraft 1.6 compatible version
+    - feature: common API for 1.5X and 1.6 CC versions
+    - feature: "`@ProxyInterfaces`"
+    - feature: Railcraft boilers integration
+    - feature: maxDamage returned for items
+    - fix: bee list returning language specific ids only
+    - fix: removed setAccess from TE Strongboxes
+0.3.3:
+    - fix: occasional crash, caused by log
+0.3.2:
+    - feature: improved Thaumcraft integration (for better compatibility with Thaumic Tinkerer)
+    - feature: added op_dump command to dump all known peripheral APIs to XML
+    - feature: TileEntity blacklist (OPC will not try to register handler for that blocks)
+    - fix: swapStacks now respects ISidedInventory restrictions (fix for ToolForge)
+    - fix: API swallowing exceptions
+    - feature: ability to read information about ComputerCraft items in inventories
+    - feature: MFR integration
+    - feature: custom update handlers for generated peripherals
+    - feature: "`@Volatile` - to mark tile entities that bypass cache"
+0.3.1:
+    - feature: added Forestry butterflies and tree saplings reading
+    - feature: ability to read destination and owner from Railcraft tickets
+    - feature: added mods blacklist (disableMods in config)
+    - feature: added developer mode - reflection calls in Lua  (devMethods in config)
+    - feature: Basic FMP integration (OP will now properly recognize tank, inventories, etc. in multiblocks)
+    - feature: "`@Alias` annotation (multiple Lua names for single method)"
+    - feature: "`@Property`, `@CallbackProperty` - automatic getters and setters for adapters"
+    - feature: daylight sensor integration
+    - fix: tons of broken integration (mostly SGCraft)
+    - fix: exception thrown when `@LuaCallable` returns primitive type
+    - fix: "proper handling of potential crashes in other mod's blocks. Crashes and bugs in foreign code will now cause: integration module and adapter disabling, returning valid placeholder peripheral"
+    - fix: OnTick peripherals not working properly in multicoroutines programs (parallel API)
+    - fix: game crashing when trying to adapt TE with broken sideness
+    - fix: Bee property 'tolerantFlyer' not reported correctly
+    - fix: some Mystcraft notebook inventory functions broken
+    - fix: argument print order in docs program
+    - fix: some inventory functions not working with sided inventories
+    - fix: PIM trying to drop player inventory
+    - fix: Sensor not handling air blocks properly
+    - tweak: improve startup time
+

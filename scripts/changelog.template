@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="${name} changelog">
+        <meta name="author" content="">
+
+        <title>${name} - changelog</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <link href="css/openmods.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="jumbotron">
+                <h1>${name} - changelog</h1>
+                <!-- generated on ${timestamp} -->
+        </div>
+        <%!
+            import markdown
+            markdowner = markdown.Markdown(output_format = "html5")
+
+            class PStrip(markdown.treeprocessors.Treeprocessor):
+                def run(self, root):
+                    for p in root.iter('p'):
+                        p.tag = 'span'
+
+            markdowner.treeprocessors['pstrip']  =  PStrip()
+
+        %>
+        <%def name="strongify(big)">
+            % if big:
+<strong>${caller.body()}</strong>
+            % else:
+${caller.body()}
+            % endif
+        </%def>
+
+        <div class="container">
+            <div class="panel-group" id="accordion">
+                <ul>
+                % for version in versions.keys():
+                    <li><a href="#${version}" >${version}</a></li>
+                %endfor #versions
+                </ul>
+                <br /><br />
+                % for version in versions.keys():
+                    <h4 id = "${version}">${version}</h4>
+                    <ul>
+                    % for change in versions[version]:
+                        <%
+                            entry = change.items()
+                            if len(entry) != 1: raise "Invalid entry: " + entry;
+                            entry_type = entry[0][0]
+                            if entry_type.startswith("big_"):
+                                entry_type = entry_type[4:]
+                                big = True
+                            else:
+                                big = False
+                            entry_value = markdowner.convert(entry[0][1])
+                        %>
+                        % if entry_type == "other":
+<li><%call expr="strongify(big)">${entry_value}</%call></li>
+                        % else:
+<li><%call expr="strongify(big)">${entry_type.capitalize()}: ${entry_value}</%call></li>
+                        % endif
+                    %endfor #change
+                    </ul>
+                %endfor #versions
+            </div>
+        </div>
+        <br /><br /><br />
+
+        <!-- Scripts placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+                        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                        ga('create', 'UA-50862853-1', 'openmods.info');
+                        ga('send', 'pageview');
+        </script>
+</body></html>

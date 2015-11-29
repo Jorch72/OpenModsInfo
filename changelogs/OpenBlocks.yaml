@@ -1,0 +1,179 @@
+---
+1.4.4:
+    - fix: crayon block destructible in adventure mode
+    - fix: vacuum hopper fluid bar not updating
+    - fix: bear traps keep entities trapped after game restart
+    - fix: canvas block breaking animation
+    - fix: luggages keep their enchantments when placed in world and broken again
+    - fix: luggages can now be named with name tags
+    - fix: trophies resetting item spawn timer when broken
+    - tweak: bear traps open when trapped entity is killed
+    - tweak: flim-flam now has blacklist/whitelist switch
+1.4.3:
+    - feature: proper API (available in Maven repo)
+    - feature: sleeping bag event
+    - feature: paintbrush can now dye vanilla blocks (like wool)
+    - feature: paintbrush can now be dyed in crafting inventory
+    - feature: paintbrushes from few other mods should now work with canvas blocks
+    - feature: add vanilla color selector to paint mixer
+    - fix: disable ticking of few TileEntities (should decrease lag when using canvas, imaginary, sky blocks, etc.)
+    - fix: change block breaker timing to prevent item duplicating
+1.4.2:
+    - feature: scaffolding (cheap blocks that decay after some time)
+    - feature: option to disable block and/or entity picking by magnet
+    - fix: magnet now tries to obey block placement/break restrictions
+    - fix: block breaker not pushing to BC pipes
+    - fix: better player data handling on Mini-Me
+    - tweak: elevator's XP drain is now off by default
+1.4.1:
+    - fix: tank NPE when breaking
+    - fix: fluid level not rendering properly in tank item
+    - fix: crash when updating huge surfaces made of skyblocks
+    - fix: rendering glitch caused by stacking /dev/null/
+    - fix: some methods in OpenPeripheral adapters for donation station and projector not working
+    - fix: should not crash when other mod registers liquid XP
+    - tweak: xp <-> fluid conversion rates are configurable
+    - tweak: changed misleading config option comment, added separate one to ignore number of blocks between elevators
+1.4:
+    - feature: few blocks (guide, paint mixer) now store settings when broken
+    - feature: graves now replay death cause when right clicked
+    - feature: named graves item will display name when placed
+    - feature: right clicking graves with shovel drops items without destroying grave
+    - feature: OpenPeripheral integration with guide
+    - feature: all trophies now visible in creative inventory
+    - feature: info book keyboard controls
+    - feature: info book table of contents for each chapter
+    - feature: grave spawn event
+    - fix: tank walls are now rendered as ISBRH (should improve performance)
+    - fix: no restrictions when placing blocks with /dev/null
+    - fix: info book crashing in some server configurations
+    - fix: graves won't spawn in protected region
+    - fix: auto anvil overwriting items in output slot
+    - fix: shower TE being recreated on every load
+    - fix: info book crash with ModularPowerSuits
+    - fix: info book crash on items without recipes
+    - fix: cannon not working with world ticks disabled
+    - fix: graves not spawning when played died in void
+    - fix: sprinkler droplet visual range
+    - fix: delay luggage renderer initialization to prevent render glitches
+    - tweak: config options for grave skeleton spawning
+    - tweak: building guide render extended (configurable)
+    - tweak: graves now available from creative inventory
+    - tweak: allow sleeping on tall glass and other non-suffocating blocks
+    - tweak: graves may spawn dirt block when created in air
+    - tweak: graves visible in creative inventory
+1.3.0: 
+    - other: Port to 1.7.10
+    - feature: gamerule for grave spawning
+    - feature: elevators are now colored in creative inventory
+    - feature: tanks in item form will now distribute liquid evenly between every item in stack when filled/drained
+    - feature: bear traps can now be opened by redstone
+    - feature: elevators are now basic blocks (so can be moved with pistons, etc)
+    - feature: graves contents are now backuped in separate location (can be later restored with /ob_inventory command
+    - feature: tanks filled with liquids are now visible in creative search
+    - fix: graves not spawning after explosions
+    - fix: more protection against luggage loss
+    - fix: fans now working with more redstone cables
+    - fix: added luggage to MineFactoryReloaded autospawner blacklist
+    - fix: spam in console when entity from spawn prevention blacklist is created
+    - fix: anvils ignoring event (custom  enchantments, blocking, etc)
+    - fix: pick block action now works with elevator colors
+    - fix: sleeping bags sometimes dropping players through world
+    - fix: sleeping bags now print reason for aborting sleep (monsters, not night, etc)
+    - fix: target dropping normal arrows instead of TConstruct ones
+    - fix: builder now responses to redstone signal
+    - fix: option to disable info book
+    - fix: objects lifted with magnet missing collisions
+    - fix: elevator ignoring actual player height
+    - fix: last stand ignoring some types of damage from other mods
+    - fix: info book crashing when items are disabled on server, but not on client
+    - fix: invalid block break logic (should be now compatible with other mods)
+    - fix: missing drops from block breaker
+    - tweak: merged info book with changelog, removed changelog
+    - tweak: disabled OpenBlocks chest loot by default
+    - tweak: ladder is now normal blocks (removed animation, but should now render faster)
+    - tweak: graves cannot be broken by Ender Dragon or Wither
+    - removed: Radio
+1.2.9:
+    - fix: block breaker sometimes ignored restrictions
+    - fix: random crash in pedometer
+    - fix: golden egg leaving floating blocks when broken
+    - fix: random crash when placing golden egg
+    - fix: crash when activating trophy sound
+    - fix: enchantments won't show in info book if disabled
+    - tweak: Limit rate of block updates and syncs on tanks
+    - tweak: Mini Me now uses skin of player that placed egg
+    - tweak: luggage GUI now show entity name
+    - tweak: sponges can be now harvested with axe faster
+1.2.8:
+    - feature: /dev/null
+    - feature: blocks can now be rotated with most other mod tools
+    - feature: very simple pedometer
+    - feature: ob_inventory command to store and restore players inventory
+    - feature: storing inventory on player's death (may be later restored with command)
+    - feature: using dye on guide block now changes markers color
+    - feature: guide block now displays total number of marker blocks on change
+    - feature: sponge-on-a-stick
+    - feature: tanks are now comparator compatible
+    - feature: Tiny People
+    - fix: changed material of most blocks from dirt to stone (should be now easily breakable with pick)
+    - fix: Natura clouds added to default cartographer blacklist
+    - fix: ComputerCraft 1.6 compatibility
+    - "fix/tweak": Trophy drops now enchantment sensitive, don't drop from non-player kill
+    - fix: error while connecting to some radio servers
+    - fix: \"Magnet too far\" when trying to deactivate
+    - fix: ineffective tank algorithm
+    - fix: yet another XP duplication bug
+    - fix: crash in crayon item with missing NBT
+    - fix: shuffle flim-flam breaking items with inventory GUI
+    - fix: changed some URL links to use load-balanced versions, URL auto-replace
+    - fix: random inventory render glitches
+    - tweak: grave blast resistance, grave breaking when block below is destroyed
+1.2.7:
+    - feature: XP Shower
+    - fix: skyblock render glitches
+    - fix: Last Stand ballancing
+    - fix: tank contents duplication bug
+1.2.6:
+    - feature: fan strength is now controlled by redstone
+    - feature: radio now accepts with URLs pointing to PLS and M3U files and understands HTTP redirections
+    - feature: actual skyblock
+    - feature: Last Stand enchantment
+    - feature: more tomfoolery!
+    - fix: block placers and breakers sometimes swapping/emptying inventories
+    - fix: crash when trying to display crayon in Thaumonomicon
+    - tweak: better guide shape generation
+1.2.5:
+    - big_feature: Almighty Book!
+    - big_feature: Radio!
+    - feature: middle clicking on tank with any liquid gives item with full amount
+    - feature: proper building guide localization
+    - feature: other mods block breakers now pick all dropped items
+    - feature: cannon pointer no longer resets after single click
+    - feature: blacklist for blocks that should be ignored by cartographer
+    - feature: disableMobs blacklist now accepts mod names too
+    - feature: way to specify special block rules for elevator
+    - fix: target dropping arrow shot by infinity bow
+    - fix: squids spawning water in nether
+    - fix: sprinkler animation sometimes halts
+    - fix: missing drops from canvas
+    - fix: trophy resetting type after breaking with any block breaker
+    - fix: invalid sponge step sound
+    - fix: cannon not able to target in certain directions
+    - fix: Luggage trying to pick item even with full inventory
+    - fix: block placer using whole stack instead of single item
+    - fix: elevator not working when high level jump boost/other jump helpers are used
+    - fix:  color formatting in paint mixer GUI
+    - fix: trophy flickering when placed in creative
+    - fix: crash when using cursor with no selected target
+    - tweak: enderman trophies now shoot enderpearls instead of teleporting directly
+    - tweak: reticulated splines
+1.2.4:
+    - feature: Graves now log location and item number, added config option debug.gravesDebug for fixing interactions with other mods
+    - tweak: Vacuum hoppers now have slightly bigger item pickup change (enough to pick XP orb when fence is placed above)
+    - tweak: Vacuum hoppers now suck XP even if no outputs are configured
+    - fix: Luggage despawning
+    - fix: missing liquid xp localization
+    - fix: Multiple graves spawning on death
+    - fix: Canvas crashing when clicking empty side
+    

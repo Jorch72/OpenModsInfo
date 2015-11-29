@@ -1,0 +1,64 @@
+---
+0.8:
+    - feature: expanded serialization utilities (including generic and nullable values)
+    - feature: IPlacerAwareTile, for more reliable block-place callback
+    - feature: font scale configurable in language file
+0.7.3:
+    - feature: class transformer null sanity checker
+    - feature: API provider utils
+    - feature: palette picker component
+    - fix: store items with string names in internal inventories
+0.7.2:
+    - fix: NPE when breaking certain blocks
+    - fix: crash when trying to store fluid with NBT in tank
+    - fix: safer method of storing TEs in EntityBlock
+0.7.1:
+    - feature: load flag for coremod compatibility
+    - tweak: log fake player creation
+    - tweak: reduce level for few logs
+0.7:
+    - feature: class injector (bytecode generator)
+    - feature: synced objects drop persistence
+    - fix: invalid tank NBT structure
+    - fix: commands not usable in single player
+    - fix: stencil initialization conflicts
+    - fix: infobook internals
+    - fix: invalid class load order
+    - other: Lots of other stuff
+0.6:
+    - other: Port to Minecraft 1.7.10
+    - feature: Id synchronization
+    - feature: RPC for in-world objects
+    - other: Lots of other stuff
+0.5.1:
+    - fix: inventory methods ignoring 'intoSlot' parameter
+    - fix: synced TEs now properly mark chunk for save
+    - tweak: sync maps now use tiny packets
+0.5:
+    - feature: Conditional loading framework
+    - feature: Item inventories
+    - feature: mapgen structure finding utilities
+    - feature: fake players are now pooled
+    - feature: OpenBlock subclasses now rotatable by default
+    - fix: quotes on config values leaking to other code
+    - fix: invalid size reported for double chests
+0.4:
+    - feature: om_config default
+0.3:
+    - feature: added InventoryUtils.swapStack (normal and sided inventory version)
+    - fix: item slots rendering order
+    - fix: logger can now be used before mod preInit
+    - fix: removed FakePlayer caching (to prevent race conditions)
+
+0.2:
+    - feature: added om_config_* command that allows to change configuration values in-game. Also added @OnLineReconfigrable to  mark values that can be changed without restart
+    - feature: event PlayerMovementEvent is send client-side every time player jumps or sneaks
+    - feature: config processing now supports list
+    - feature: ReflectionUtils
+    - feature: new item drops callback, to improve interactions with block breakers
+    - fix: shift-click now works properly with Slot.isItemValid
+    - fix: inventory utils ignoring NBT tags when stacking
+    - fix: missing onBreak callback
+    - fix: always logging outbound packets, even when debugLogPackets is false
+0.1:
+    - other: initial release
