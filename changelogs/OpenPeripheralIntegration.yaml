@@ -1,4 +1,8 @@
 ---
+0.4:
+    - feature: add vanilla potion information
+    - fix: make few methods in note block asynchronous
+    - fix: error when getting bee info
 0.3:
     - feature: expanded safari net meta provider
     - feature: vanilla's flower pots adapter

@@ -1,4 +1,13 @@
 ---
+0.5:
+    - big_feature: terminal glasses can be now merged (in crafting grid) with any helmet
+    - feature: "`.clickable` on terminal glasses components"
+    - feature: "`glasses_drag` event"
+    - feature: selector can be rotated around axis when pointing up or down
+    - fix: glitches when rendering items in terminal glasses
+    - fix: missing items on selector in fast graphics
+    - fix: missing texture warning when only OC is installed
+    - fix: PIM breaking animation
 0.4:
     - feature: "new shapes for glasses: point, line, line strip, triangle and polygons (+gradient versions)"
     - feature: Glasses in capture mode can now control Minecraft's GUI elements (like hotbar) visibility

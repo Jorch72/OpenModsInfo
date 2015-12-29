@@ -100,7 +100,7 @@
                - ???
     - question: "I tried to start OpenModsLib in development mode, but it's shuts down with message `The mods and versions listed below could not be found: OpenModsCore : any`"
       answer: |
-               When you start mod in source code form from IDE, Forge/FML is missing information normally available in JAR file.
+               When you start mod in source code form from IDE, Forge/FML can't find information normally available in JAR file.
                
                To start game you need to do one of two things:
                
@@ -129,6 +129,7 @@
                     
                      - Advent of Ascension
                      - CombatLog plugin
+                     - RotaryCraft (when player is killed by grinder)
                      - ???
                         
                      Look at the end of this question for method of getting all mods that may change drops mechanics.

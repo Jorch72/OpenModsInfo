@@ -1,4 +1,26 @@
 ---
+1.5:
+    - big_feature: more flexible building guide
+    - big_feature: enhanced building guide (can place blocks in survival)
+    - feature: rotating elevator
+    - feature: implement modlist config GUI
+    - feature: epic eraser (to remove flim-flammed lore)
+    - feature: wrench-like thingie for rotating blocks
+    - fix: amount of sprinkler particles is now controlled by game settings
+    - fix: rope ladder drops items for each broken block
+    - fix: canon aiming now properly calculates height
+    - fix: /dev/null stack overflow
+    - fix: skyblock stacking
+    - fix: proper liquid xp registration
+    - fix: Turkish locale problems
+    - fix: block not checking redstone state after placing
+    - fix: flim-flammed lore is now places in separate tag, display configurable by config
+    - fix: break animation on tanks and rope ladders
+    - tweak: more OreDictionaly compatibility
+    - tweak: elevator no longer changes player X,Z coordinates after teleport (configurable)
+    - tweak: /dev/null now requires sneaking to open GUI
+    - tweak: add options for sprinkler consumption rate
+    - tweak: improved grave logging
 1.4.4:
     - fix: crayon block destructible in adventure mode
     - fix: vacuum hopper fluid bar not updating

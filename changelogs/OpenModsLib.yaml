@@ -1,4 +1,11 @@
 ---
+0.9:
+    - big_feature: calculator framework, command calcultor (infix + RPN)
+    - feature: Expand block rotation/orientation framework
+    - feature: API variable injection utilities
+    - feature: add integration with mod list config options
+    - fix: break block after rotation if no longer valid
+    - fix: move to ASM5
 0.8:
     - feature: expanded serialization utilities (including generic and nullable values)
     - feature: IPlacerAwareTile, for more reliable block-place callback
