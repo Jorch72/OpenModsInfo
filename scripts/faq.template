@@ -31,6 +31,10 @@
             <div class="panel-group" id="accordion">
 
                 % for category in categories:
+                <div class="tocHeader"><a href="#${category['id']}">${category['title']} »</a></div>
+                %endfor #category
+
+                % for category in categories:
                 <div class="faqHeader" id="${category['id']}">${category['title']}</div>
 
                     % for entry in category['questions']:

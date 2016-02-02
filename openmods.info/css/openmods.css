@@ -20,6 +20,12 @@
     margin: 20px;
 }
 
+.tocHeader a {
+    font-size: 17px;
+    margin: 20px;
+    color: black;
+}
+
 .file-info {
     display: none;
     border-radius: 5px;
