@@ -34,7 +34,7 @@
                         <img src="images/github.png" style="height: 1.75em;" alt="Github"/>
                         Source code and bug reporting
                     </a>
-                    <a class="btn btn-small btn-default" role="button" href="http://www.openmods.info:8080/" target="_blank" data-tracking="jenkins:jump">
+                    <a class="btn btn-small btn-default" role="button" href="https://builds.openmods.info/" target="_blank" data-tracking="jenkins:jump">
                         <img src="images/jenkins.png" style="height: 1.75em;" alt="Jenkins"/>
                         Development builds
                     </a>

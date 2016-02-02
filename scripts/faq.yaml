@@ -64,6 +64,13 @@
                **Note:** switching any of those flags in config will fully remove block/item from game.
                Other mods may not like it, so disabling blocks/items for existing worlds must be done with extra carefulness
                (though FML automatically makes world backup when inconsistency is detected).
+    - question: Some of the links to OpenMods build server (Jenkins) are broken?
+      answer: |
+               We've recently switched from HTTP to more secure HTTPS. Main page uses something called [HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security), which makes browser switch to HTTPS.
+               
+               Unfortunately, this does not work smoothly with our Jenkins due to fixed port (8080). To fix it, simply change address from `openmods.info:8080` to `builds.openmods.info`.
+               
+               *Note:* Old links still works for tools that doesn't implements HSTS - that includes Curl, most bots and crawlers. They can still use old address (`openmods.info:8080`).
 - id: om
   title: OpenModsLib
   questions:
