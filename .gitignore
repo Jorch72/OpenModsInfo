@@ -4,4 +4,7 @@ openmods.info/downloads/*
 openmods.info/faq.html
 openmods.info/index.html
 openmods.info/changelog-*.html
+openmods.info/atom.xml
+openmods.info/rss.xml
 releases/*
+feeds/*

@@ -7,6 +7,7 @@ import re
 import hashlib
 import datetime
 import codecs
+import json
 
 MC_VERSION = "1.7.10"
 
@@ -54,13 +55,31 @@ def load_files(dirs):
 
     return mod_files
 
-def generate_page(dirs):
-    files = load_files(dirs)
-
+def generate_page(files):
     template = Template(filename='index.template', input_encoding='utf-8')
 
     with codecs.open("../openmods.info/index.html", "w", "utf-8", "replace") as output:
         output.write(template.render_unicode(files = files, timestamp = datetime.datetime.now().isoformat()))
 
+def generate_report(files):
+    result = {
+        "generated" : datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S"),
+    }
+
+    mods = list()
+    for (mod, file_info) in files.items():
+        mod_data = dict(id = mod)
+        mod_data.update(file_info._asdict())
+        mod_data["date"] = mod_data["date"].strftime("%Y-%m-%d")
+        mods.append(mod_data)
+
+    result["mods"] = mods
+
+    gen_date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+    with codecs.open("../feeds/" + gen_date + ".json", "w", "utf-8", "replace") as output:
+        json.dump(result, output, sort_keys=True, indent=4, separators=(',', ': '))
+
 if __name__ == "__main__":
-    generate_page(sys.argv[1:])
+    files = load_files(sys.argv[1:])
+    generate_page(files)
+    generate_report(files)
