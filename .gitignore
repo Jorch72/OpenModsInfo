@@ -7,4 +7,4 @@ openmods.info/changelog-*.html
 openmods.info/atom.xml
 openmods.info/rss.xml
 releases/*
-feeds/*
+release-log/*

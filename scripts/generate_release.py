@@ -62,9 +62,8 @@ def generate_page(files):
         output.write(template.render_unicode(files = files, timestamp = datetime.datetime.now().isoformat()))
 
 def generate_report(files):
-    result = {
-        "generated" : datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S"),
-    }
+    gen_datetime = datetime.datetime.utcnow()
+    result = dict(generated = gen_datetime.strftime("%Y-%m-%dT%H:%M:%S"))
 
     mods = list()
     for (mod, file_info) in files.items():
@@ -75,8 +74,8 @@ def generate_report(files):
 
     result["mods"] = mods
 
-    gen_date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
-    with codecs.open("../feeds/" + gen_date + ".json", "w", "utf-8", "replace") as output:
+    gen_date = gen_datetime.strftime("%Y-%m-%d")
+    with codecs.open("../releases/" + gen_date + ".json", "w", "utf-8", "replace") as output:
         json.dump(result, output, sort_keys=True, indent=4, separators=(',', ': '))
 
 if __name__ == "__main__":

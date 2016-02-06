@@ -27,7 +27,7 @@ def parse_file(path):
             yield FeedEntry(mod['name'], mod['id'], mod['version'], mod['date'])
 
 if __name__ == "__main__":
-    data = scan_files("../feeds/")
+    data = scan_files("../release-archive/")
 
     fg = FeedGenerator()
     fg.id('https://openmods.info/updates')
