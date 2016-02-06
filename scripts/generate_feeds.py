@@ -55,9 +55,9 @@ if __name__ == "__main__":
             fe.id("openmods.info:update:" + bundle + ":" + mod_id)
             fe.title("New file: " + mod_data.file)
             fe.published(bundle_date)
-            ue.updated(bundle_date)
+            fe.updated(bundle_date)
             fe.link({'href' : "https://openmods.info/downloads/" + mod_data.file})
 
-    fg.atom_file('../openmods.info/atom.xml')
-    fg.rss_file('../openmods.info/rss.xml')
+    fg.atom_file('../openmods.info/atom.xml', pretty=True)
+    fg.rss_file('../openmods.info/rss.xml', pretty=True)
 
