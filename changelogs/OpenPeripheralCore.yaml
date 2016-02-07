@@ -1,4 +1,8 @@
 ---
+1.3:
+    - feature: "`@ReturnSignal` for non-blocking calls"
+    - feature: "`@ApiHolder` now accepts methods"
+    - fix: invalid fields in class shouldn't break whole adapter
 1.2.1:
     - other: Update API to 3.3.2 (adds alternative way of accessing interfaces)
     - fix: properly implement `.equals` method on CC adapters

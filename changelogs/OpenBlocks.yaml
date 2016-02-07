@@ -1,4 +1,9 @@
 ---
+1.5.1:
+    - fix: internal block tanks ignoring neighbour tanks
+    - fix: building guide not storing settings on drop
+    - fix: fix infobook crash on some ore dictionary recipes
+    - fix: XP shower breaking after block update
 1.5:
     - big_feature: more flexible building guide
     - big_feature: enhanced building guide (can place blocks in survival)

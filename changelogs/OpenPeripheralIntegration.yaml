@@ -1,4 +1,7 @@
 ---
+0.4.1:
+    - feature: few new RC adapters
+    - fix: item meta broken on mundane potion
 0.4:
     - feature: add vanilla potion information
     - fix: make few methods in note block asynchronous

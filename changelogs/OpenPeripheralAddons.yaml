@@ -1,4 +1,6 @@
 ---
+0.5.1:
+    - fix: re-add `@Asynchronous` annotation on drawable delete
 0.5:
     - big_feature: terminal glasses can be now merged (in crafting grid) with any helmet
     - feature: "`.clickable` on terminal glasses components"

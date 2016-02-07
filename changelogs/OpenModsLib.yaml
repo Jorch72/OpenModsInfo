@@ -1,6 +1,11 @@
 ---
+0.9.1:
+    - feature: API provider annotations can now accept methods
+    - fix: syncable TE drops not storing superclass info
+    - fix: properly list stacks for wildcard entries in recipes
+    - fix: invalid tool rotation on blocks with two orientations
 0.9:
-    - big_feature: calculator framework, command calcultor (infix + RPN)
+    - big_feature: calculator framework, command calculator (infix + RPN)
     - feature: Expand block rotation/orientation framework
     - feature: API variable injection utilities
     - feature: add integration with mod list config options
