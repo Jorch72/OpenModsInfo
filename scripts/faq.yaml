@@ -363,7 +363,7 @@
     - question: What are terminal glasses events?
       answer: |
                When attached to computer terminal bridge will send events received from terminal glasses and wireless keyboard.
-               List is available [here](https://gist.github.com/boq/9a098b89ee102cbf1b2b)
+               List is available [here](https://github.com/OpenMods/OpenPeripheral-Addons/wiki/Terminal-Glasses-Events)
 - id: op-integration
   title: OpenPeripheralIntegration
   questions:
