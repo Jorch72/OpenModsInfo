@@ -7,7 +7,7 @@ import codecs
 import datetime
 
 def generate():
-    template = Template(filename='faq.template')
+    template = Template(filename='faq.template', input_encoding='utf-8')
 
     markdowner = markdown.Markdown(output_format = "html5")
     

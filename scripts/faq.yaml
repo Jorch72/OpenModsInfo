@@ -248,6 +248,12 @@
                - Too many blocks between elevators. This limitation is also configurable.
                - Badly implemented air-like blocks. Most mods implemented various fake air, light and tracking blocks right, but there is still room for misbehaving implementation.<!-- We are paranoid -->
                - Different elevator colors. Elevators will only teleport to other elevators with same color.
+               - Interactions with Better Sprinting and similar mods.
+            
+               In some cases switching to alternative method of getting information about player movement may help (especially when it's cased by interaction with other mod).
+               
+               To do it, open `OpenModsLibCore.json` in config folder on client, find `activate_movement_callback` and change line below it from `"value": "true"` to `"value": "false"`.
+             
     - question: Does <code>/ob_inventory restore</code> work on non-vanilla inventories?
       answer: |
                This depends on other mods.
