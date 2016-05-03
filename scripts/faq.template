@@ -38,16 +38,14 @@
                 <div class="faqHeader" id="${category['id']}">${category['title']}</div>
 
                     % for entry in category['questions']:
-                    <div class="panel panel-default">
+                    <div class="panel panel-default faq-entry" id="${category['id']}-${loop.index}">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" id="${category['id']}-${loop.index}" href="#expand-${category['id']}-${loop.index}">${entry['question']}</a>
+                                <a href="#${category['id']}-${loop.index}">${entry['question']}</a>
                             </h4>
                         </div>
-                        <div id="expand-${category['id']}-${loop.index}" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                ${entry['answer']}
-                            </div>
+                        <div class="panel-body faq-answer">
+                            ${entry['answer']}
                         </div>
                     </div>
                     % endfor # entry

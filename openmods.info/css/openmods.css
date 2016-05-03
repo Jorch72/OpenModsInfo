@@ -36,3 +36,11 @@
 .file-info:target {
     display: block;
 }
+
+.faq-entry .faq-answer {
+    display: none;
+}
+
+.faq-entry:target .faq-answer {
+    display: block;
+}
