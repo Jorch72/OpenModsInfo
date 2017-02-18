@@ -421,7 +421,11 @@
     - question: Vanilla furnace behaves weird?
       answer: |
                Well, vanilla is weird. And furnace is one of the best examples of it<!-- this is what we professionals call 'notch code' -->.
-               Unfortunately, we can't do anything about it.
+               
+               Basically, when furnace updates (changes front face from 'off' to 'on' or from 'on' to 'off'), it creates new tile entity (inventory, basically), but ComputerCraft does not update properly.
+               From that point every action (like pulling item) on peripheral changes 'old' tile entity, while 'new' one (actually existing in world) remains unchanged.
+               
+               <del>Unfortunately, we can't do anything about it.</del> (Since OpenPeripheralAddons 0.6) Attaching via peripheral proxy should fix this issue.
     - question: How do I disable integration for single mod?
       answer: |
                Just go to configs and disable something that looks like it might do the job.
