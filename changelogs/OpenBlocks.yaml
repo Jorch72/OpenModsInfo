@@ -1,10 +1,33 @@
 ---
-1.5.1:
+"1.6":
+    - big_feature: improve bulding guide rendering performance
+    - big_feature: new behaviour of hang-gliders, based on real world
+    - feature: variometer (acoustic indication of vertical speed) for hang-glider (activated with `V` by default)
+    - feature: optional mode that places grave only when grave item is present in inventory
+    - feature: make Last Stand xp cost fully configurable
+    - feature: make trophy drop rate fully configurable, allow drops without looting sword
+    - feature: limit grave spawn height (excludes bedrock layer by default)
+    - feature: option for minimal tank balance threshold (for performance tuning)
+    - fix: Last Stand now properly uses value of damage after armor reductions
+    - fix: block placed with placer are now facing the same direction as placer
+    - fix: resize vacuum hopper hitbox
+    - fix: limit cursor range to 64 blocks
+    - fix: sprinkler item duplication
+    - fix: rare crash during tank rendering
+    - fix: luggage taking damage from weird sources
+    - fix: xp shower ignoring redstone state after game load
+    - fix: glitches when trying to sleep with deployed hang-glider
+    - fix: /dev/null item duplication
+    - tweak: cursor requires sneaking to select new block
+    - tweak: change height map projector model to include cone when map is present
+    - tweak: show page numbers on ToC page of infobook
+    - tweak: rotate builder guide dome template to allow more orientations
+"1.5.1":
     - fix: internal block tanks ignoring neighbour tanks
     - fix: building guide not storing settings on drop
     - fix: fix infobook crash on some ore dictionary recipes
     - fix: XP shower breaking after block update
-1.5:
+"1.5":
     - big_feature: more flexible building guide
     - big_feature: enhanced building guide (can place blocks in survival)
     - feature: rotating elevator
@@ -26,7 +49,7 @@
     - tweak: /dev/null now requires sneaking to open GUI
     - tweak: add options for sprinkler consumption rate
     - tweak: improved grave logging
-1.4.4:
+"1.4.4":
     - fix: crayon block destructible in adventure mode
     - fix: vacuum hopper fluid bar not updating
     - fix: bear traps keep entities trapped after game restart
@@ -36,7 +59,7 @@
     - fix: trophies resetting item spawn timer when broken
     - tweak: bear traps open when trapped entity is killed
     - tweak: flim-flam now has blacklist/whitelist switch
-1.4.3:
+"1.4.3":
     - feature: proper API (available in Maven repo)
     - feature: sleeping bag event
     - feature: paintbrush can now dye vanilla blocks (like wool)
@@ -45,14 +68,14 @@
     - feature: add vanilla color selector to paint mixer
     - fix: disable ticking of few TileEntities (should decrease lag when using canvas, imaginary, sky blocks, etc.)
     - fix: change block breaker timing to prevent item duplicating
-1.4.2:
+"1.4.2":
     - feature: scaffolding (cheap blocks that decay after some time)
     - feature: option to disable block and/or entity picking by magnet
     - fix: magnet now tries to obey block placement/break restrictions
     - fix: block breaker not pushing to BC pipes
     - fix: better player data handling on Mini-Me
     - tweak: elevator's XP drain is now off by default
-1.4.1:
+"1.4.1":
     - fix: tank NPE when breaking
     - fix: fluid level not rendering properly in tank item
     - fix: crash when updating huge surfaces made of skyblocks
@@ -61,7 +84,7 @@
     - fix: should not crash when other mod registers liquid XP
     - tweak: xp <-> fluid conversion rates are configurable
     - tweak: changed misleading config option comment, added separate one to ignore number of blocks between elevators
-1.4:
+"1.4":
     - feature: few blocks (guide, paint mixer) now store settings when broken
     - feature: graves now replay death cause when right clicked
     - feature: named graves item will display name when placed
@@ -89,7 +112,7 @@
     - tweak: allow sleeping on tall glass and other non-suffocating blocks
     - tweak: graves may spawn dirt block when created in air
     - tweak: graves visible in creative inventory
-1.3.0: 
+"1.3.0": 
     - other: Port to 1.7.10
     - feature: gamerule for grave spawning
     - feature: elevators are now colored in creative inventory
@@ -121,7 +144,7 @@
     - tweak: ladder is now normal blocks (removed animation, but should now render faster)
     - tweak: graves cannot be broken by Ender Dragon or Wither
     - removed: Radio
-1.2.9:
+"1.2.9":
     - fix: block breaker sometimes ignored restrictions
     - fix: random crash in pedometer
     - fix: golden egg leaving floating blocks when broken
@@ -132,7 +155,7 @@
     - tweak: Mini Me now uses skin of player that placed egg
     - tweak: luggage GUI now show entity name
     - tweak: sponges can be now harvested with axe faster
-1.2.8:
+"1.2.8":
     - feature: /dev/null
     - feature: blocks can now be rotated with most other mod tools
     - feature: very simple pedometer
@@ -156,12 +179,12 @@
     - fix: changed some URL links to use load-balanced versions, URL auto-replace
     - fix: random inventory render glitches
     - tweak: grave blast resistance, grave breaking when block below is destroyed
-1.2.7:
+"1.2.7":
     - feature: XP Shower
     - fix: skyblock render glitches
     - fix: Last Stand ballancing
     - fix: tank contents duplication bug
-1.2.6:
+"1.2.6":
     - feature: fan strength is now controlled by redstone
     - feature: radio now accepts with URLs pointing to PLS and M3U files and understands HTTP redirections
     - feature: actual skyblock
@@ -170,7 +193,7 @@
     - fix: block placers and breakers sometimes swapping/emptying inventories
     - fix: crash when trying to display crayon in Thaumonomicon
     - tweak: better guide shape generation
-1.2.5:
+"1.2.5":
     - big_feature: Almighty Book!
     - big_feature: Radio!
     - feature: middle clicking on tank with any liquid gives item with full amount
@@ -195,7 +218,7 @@
     - fix: crash when using cursor with no selected target
     - tweak: enderman trophies now shoot enderpearls instead of teleporting directly
     - tweak: reticulated splines
-1.2.4:
+"1.2.4":
     - feature: Graves now log location and item number, added config option debug.gravesDebug for fixing interactions with other mods
     - tweak: Vacuum hoppers now have slightly bigger item pickup change (enough to pick XP orb when fence is placed above)
     - tweak: Vacuum hoppers now suck XP even if no outputs are configured

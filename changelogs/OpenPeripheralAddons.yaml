@@ -1,7 +1,13 @@
 ---
-0.5.1:
+"0.6":
+    - feature: add sensor function to scan single location
+    - feature: add information about block color to sensor scan result
+    - fix: filter garbage character when glasses keyboard is used on Macs
+    - fix: rare crash when attaching glasses to terminal
+    - fix: peripheral proxy ignoring TE changes without block change (should now fix vanilla furnace bug)
+"0.5.1":
     - fix: re-add `@Asynchronous` annotation on drawable delete
-0.5:
+"0.5":
     - big_feature: terminal glasses can be now merged (in crafting grid) with any helmet
     - feature: "`.clickable` on terminal glasses components"
     - feature: "`glasses_drag` event"
@@ -10,16 +16,16 @@
     - fix: missing items on selector in fast graphics
     - fix: missing texture warning when only OC is installed
     - fix: PIM breaking animation
-0.4:
+"0.4":
     - feature: "new shapes for glasses: point, line, line strip, triangle and polygons (+gradient versions)"
     - feature: Glasses in capture mode can now control Minecraft's GUI elements (like hotbar) visibility
     - feature: ItemIcons now have controllable damage bars and quantity indicators
     - feature: glasses can now listen to all chat commands (new event glasses_chat_message)
     - fix: missing alignment methods on terminal glasses
-0.3.1:
+"0.3.1":
     - feature: sensor can now scan items on ground, item frames, paintings
     - fix: ghost terminal glasses objects after relog
-0.3:
+"0.3":
     - feature: wireless keyboard (allows using mouse and keyboard directly with glasses)
     - feature: anchors (allow positions elements in screen corners and middle)
     - feature: item selector peripheral (contributed by **thraaawn**)
@@ -29,26 +35,26 @@
     - fix: glasses terminal don't reset terminal id when dropped and placed
     - tweak: changes recipes to  no longer include ComputerCraft items
     - big_note: glasses events have been changed to match newly added ones!
-0.2.0:
+"0.2.0":
     - other: Port to Minecraft 1.7.10
     - fix: limit update rate on glasses **(player now has to call .sync() to make changes visible)**
     - other: other random stuff I don't remember
-0.1.5:
+"0.1.5":
     - fix: implement entity sensor range
     - fix: sensor turtle crashing when block was disabled
     - tweak: reduce amount of block updates for proxies
-0.1.4:
+"0.1.4":
     - feature: ComputerCraft 1.6 compatible version
     - fix: terminal glasses not resetting on player logout
     - fix: chaining proxies causing crash
-0.1.3:
+"0.1.3":
     - fix: sideness bug in in Drawable.Icon
-0.1.2:
+"0.1.2":
     - fix: sensor.sonicScan returning empty list
     - fix: PIM dropping items
     - fix: Peripheral Proxy getting stuck after block is broken
     - fix: terminal glasses now render items same way as other GUIs
-0.1.1:
+"0.1.1":
     - feature: player_on event from PIM now contains player name
     - fix: All objects returned in terminal glasses API now have listMethods (same format as peripherals)
     - fix: missing delete method on terminal glasses drawables

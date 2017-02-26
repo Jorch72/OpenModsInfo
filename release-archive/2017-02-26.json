@@ -1,0 +1,65 @@
+{
+    "generated": "2017-02-26T19:52:32",
+    "mods": [
+        {
+            "date": "2017-02-26",
+            "id": "OpenBlocks",
+            "md5": "26aa01a40b9eeb35a4d291ec9d6dd598",
+            "name": "OpenBlocks-1.7.10-1.6.jar",
+            "path": "../releases/2017-02-26/OpenBlocks-1.7.10-1.6.jar",
+            "sha256": "a75ea97c1977e11942df8189d184caf96afe464fefe4b28337a7fb7f00e74300",
+            "size": 2799187,
+            "version": "1.6"
+        },
+        {
+            "date": "2017-02-26",
+            "id": "OpenPeripheral",
+            "md5": "da36c8574dcfd33fef9b56b1beae414c",
+            "name": "OpenPeripheral-1.7.10-AIO-8.jar",
+            "path": "../releases/2017-02-26/OpenPeripheral-1.7.10-AIO-8.jar",
+            "sha256": "a8d7a7d9edd5ccfc561c9853cdd504cb4e5095ed7e3b196c65f3c626825c26a3",
+            "size": 1113273,
+            "version": "AIO-8"
+        },
+        {
+            "date": "2017-02-26",
+            "id": "OpenModsLib",
+            "md5": "7af56161fea4b81d7c8504133b269710",
+            "name": "OpenModsLib-1.7.10-0.10.jar",
+            "path": "../releases/2017-02-26/OpenModsLib-1.7.10-0.10.jar",
+            "sha256": "05e382c60c4ba56b83d5f9f81cea5c45f50790a47bad9041b40b7875022f4405",
+            "size": 2259572,
+            "version": "0.10"
+        },
+        {
+            "date": "2017-02-26",
+            "id": "OpenPeripheralCore",
+            "md5": "40a20aa1af43c8364293d7eeb0e1cbe2",
+            "name": "OpenPeripheralCore-1.7.10-1.4.jar",
+            "path": "../releases/2017-02-26/OpenPeripheralCore-1.7.10-1.4.jar",
+            "sha256": "8a25147d503419a170ee52b8d667321d7255bf9bbbd1e8513f140268ffe9d2b0",
+            "size": 425876,
+            "version": "1.4"
+        },
+        {
+            "date": "2017-02-26",
+            "id": "OpenPeripheralAddons",
+            "md5": "73f9ac8a80ebb978d8fd304cb78c77a9",
+            "name": "OpenPeripheralAddons-1.7.10-0.6.jar",
+            "path": "../releases/2017-02-26/OpenPeripheralAddons-1.7.10-0.6.jar",
+            "sha256": "77f66f16116de34947818b8e2a58638e27ccbd4e5343b86c59fcddc227756244",
+            "size": 449500,
+            "version": "0.6"
+        },
+        {
+            "date": "2017-02-26",
+            "id": "OpenPeripheralIntegration",
+            "md5": "9605fa8af0b27adf3417e3d8d9fa99a8",
+            "name": "OpenPeripheralIntegration-1.7.10-0.6.jar",
+            "path": "../releases/2017-02-26/OpenPeripheralIntegration-1.7.10-0.6.jar",
+            "sha256": "a22785e88576df2883f35fa7b6ddb3f1854d7c4b8bfc94b759d052bd074d2ce8",
+            "size": 272855,
+            "version": "0.6"
+        }
+    ]
+}
