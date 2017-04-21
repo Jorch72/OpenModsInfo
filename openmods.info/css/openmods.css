@@ -44,3 +44,34 @@
 .faq-entry:target .faq-answer {
     display: block;
 }
+
+#modpack:target {
+    font-size: 100px;
+    color: red;
+    font-weight: bold;
+    text-shadow: 0 0 0 0 red;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        color: blue;
+        text-shadow: 0 0 0 0 red;
+        transform: rotate(0deg);
+    }
+    25% {
+        color: green;
+        text-shadow: 0 0 0 10px green;
+        transform: rotate(5deg);
+    }
+    75% {
+        color: red;
+        text-shadow: 0 0 10px 0 blue;
+        transform: rotate(-5deg);
+    }
+    100% {
+        color: blue;
+        text-shadow: 0 0 0 0 red;
+        transform: rotate(0deg);
+    }
+}
