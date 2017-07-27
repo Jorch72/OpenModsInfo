@@ -56,6 +56,10 @@
                         <img src="images/feed.png" style="height: 1.75em;" alt="RSS/Atom"/>
                         Update feed
                     </a>
+                    <a class="btn btn-small btn-default" role="button" href="mailto:contact@openmods.info" target="_blank" data-tracking="email:jump">
+                        <img src="images/contact.png" style="height: 1.75em;" alt="Contact"/>
+                        Contact
+                    </a>
                 </p>
         </div>
 
